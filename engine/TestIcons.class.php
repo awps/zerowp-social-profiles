@@ -10,10 +10,12 @@ class TestIcons{
 	public function test() {
 		$brands = ZSP()->brands;
 
+		ksort( $brands );
+
 		foreach ($brands as $brand => $v) {
 			$name = !empty( $v[1] ) ? esc_attr( $v[1] ) : ucfirst( $brand );
 
-			echo "<span  class='zsp-{$brand}' title='{$name}'><i></i></span>";
+			echo "<span  class='sp-icon-{$brand} soft burst-alt extra-large' title='{$name}'><i></i></span>";
 		}
 
 		// $out = '';

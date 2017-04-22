@@ -173,8 +173,10 @@ final class ZeroWPSocialProfiles{
 
 		add_action( 'init', array( $this, 'init' ), 0 );
 		add_action( 'widgets_init', array( $this, 'initWidgets' ) );
-		add_action( 'admin_enqueue_scripts', array( $this, 'adminAssets' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue' ) );
+
+		add_action( 'admin_enqueue_scripts', array( $this, 'adminAssets' ) );
+		add_action( 'customize_controls_enqueue_scripts', array( $this, 'customizerEnqueue' ) );
 
 		$this->brands = SocialProfiles\Brands::all();
 
@@ -232,23 +234,24 @@ final class ZeroWPSocialProfiles{
 	 *
 	 * @return void 
 	 */
-	public function adminAssets(){
+	public function adminAssets( $is_customize = false ){
 		$id     = 'social-profiles';
 		$assets = $this->rootURL() . 'assets/';
-		
 		$screen = get_current_screen();
-		if( is_admin() && ( 'widgets' == $screen->base ) ){
+
+		if( !empty( $is_customize ) || ( is_admin() && ( 'widgets' == $screen->base ) ) ){
 
 			wp_register_style( $id . '-admin-css', $assets . 'admin.css', '', $this->version );
 			wp_enqueue_style( $id . '-admin-css' );
-
-			wp_enqueue_style( 'wp-color-picker' );
-			wp_enqueue_script( 'wp-color-picker' );
 
 			wp_enqueue_script('jquery-ui-core');
 			wp_enqueue_script('jquery-ui-sortable');
 
 		}
+	}
+
+	public function customizerEnqueue(){
+		$this->adminAssets( true );
 	}
 
 	//------------------------------------//--------------------------------------//

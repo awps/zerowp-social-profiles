@@ -1,3 +1,5 @@
+@import "__lesshat.less";
+
 @font-face {
 	font-family: 'zspicon';
 	src:  url('fonts/zsp.eot?6mfloc');
@@ -10,729 +12,852 @@
 	font-style: normal;
 }
 
-[class^="zsp-"], [class*=" zsp-"] {
+
+// ----------------------------------------------------------------------------
+// Icon block
+// ----------------------------------------------------------------------------
+[class*="sp-icon-"] {
+	position: relative;
 	display: inline-block;
 	padding: 5px 9px;
 	margin: 3px;
 	border-radius: 3px;
+	background: #333;
 	color: #fff;
-	transition: opacity 0.2s;
+	.transition( opacity 0.2s );
+	
 	&:hover{
 		opacity: 0.8;
 	}
+
+	i{
+		/* use !important to prevent issues with browser extensions that change fonts */
+		font-family: 'zspicon' !important;
+		speak: none;
+		font-style: normal;
+		font-weight: normal;
+		font-variant: normal;
+		text-transform: none;
+		line-height: 1;
+		
+		position: relative;
+		z-index: 10;
+
+		/* Better Font Rendering =========== */
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	}
+
+	&.large{
+		width: 50px;
+		height: 50px;
+		text-align: center;
+		font-size: 24px;
+		padding: 7px 0;
+	}
+
+	&.extra-large{
+		width: 100px;
+		height: 100px;
+		text-align: center;
+		font-size: 48px;
+		padding: 14px 0;
+	}
+
+	&.rounded{
+		border-radius: 50%;
+	}
+
+	&.soft{
+		border-radius: 15%;
+	}
+
+	&.square{
+		border-radius: 0;
+	}
+
+	&.burst{
+		&:before{
+			content: "";
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			background: inherit;
+			.transform( rotate( 45deg ) );
+			border-radius: inherit;
+		}
+	}
+
+	&.burst-alt{
+		&:before,
+		&:after{
+			content: "";
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			background: inherit;
+			border-radius: inherit;
+		}
+		&:before{
+			.transform( rotate( 30deg ) );
+		}
+		&:after{
+			.transform( rotate( 60deg ) );
+		}
+	}
+
+	&.burst,
+	&.burst-alt{
+		margin: 7px;
+	}
+
+	&.large{
+		&.burst,
+		&.burst-alt{
+			margin: 10px;
+		}
+	}
+
+	&.extra-large{
+		&.burst,
+		&.burst-alt{
+			margin: 20px;
+		}
+	}
 }
 
-[class^="zsp-"] i, [class*=" zsp-"] i {
-	/* use !important to prevent issues with browser extensions that change fonts */
-	font-family: 'zspicon' !important;
-	speak: none;
-	font-style: normal;
-	font-weight: normal;
-	font-variant: normal;
-	text-transform: none;
-	line-height: 1;
-	
-	position: relative;
-	z-index: 10;
 
-	/* Better Font Rendering =========== */
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
+// ----------------------------------------------------------------------------
+// Widget
+// ----------------------------------------------------------------------------
+.zsp-social-profiles-widget{
+	.network{
+		display: block;
+		position: relative;
+		padding-left: 65px;
+		min-height: 50px;
+		margin-bottom: 25px;
+		> [class*="sp-icon-"]{
+			position: absolute;
+			left: 0;
+			top: 0;
+			display: block;
+			margin: 0;
+		}
+		> .details{
+			.on{
+				display: block;
+			}
+			.title{
+				position: relative;
+				display: inline-block;
+				font-weight: 700;
+			}
+		}
+	}
 }
 
-.zsp-500px{ 
+
+// ----------------------------------------------------------------------------
+// Icons
+// ----------------------------------------------------------------------------
+.sp-icon-500px{ 
 	background: #58a9de;
 	i:before{ content: "\e000"; }
 }
-.zsp-8tracks{ 
+.sp-icon-8tracks{ 
 	background: #122c4b;
 	i:before{ content: "\e001"; }
 }
-.zsp-airbnb{ 
+.sp-icon-airbnb{ 
 	background: #ff5a5f;
 	i:before{ content: "\e002"; }
 }
-.zsp-alliance{ 
+.sp-icon-alliance{ 
 	background: #144587;
 	i:before{ content: "\e003"; }
 }
-.zsp-amazon{ 
+.sp-icon-amazon{ 
 	background: #ff9900;
 	i:before{ content: "\e004"; }
 }
-.zsp-amplement{ 
+.sp-icon-amplement{ 
 	background: #0996c3;
 	i:before{ content: "\e005"; }
 }
-.zsp-android{ 
+.sp-icon-android{ 
 	background: #8ec047;
 	i:before{ content: "\e006"; }
 }
-.zsp-angellist{ 
+.sp-icon-angellist{ 
 	background: #000000;
 	i:before{ content: "\e007"; }
 }
-.zsp-apple{ 
+.sp-icon-apple{ 
 	background: #B9BFC1;
 	i:before{ content: "\e008"; }
 }
-.zsp-appnet{ 
+.sp-icon-appnet{ 
 	background: #494949;
 	i:before{ content: "\e009"; }
 }
-.zsp-baidu{ 
+.sp-icon-baidu{ 
 	background: #2629d9;
 	i:before{ content: "\e00a"; }
 }
-.zsp-bandcamp{ 
+.sp-icon-bandcamp{ 
 	background: #619aa9;
 	i:before{ content: "\e00b"; }
 }
-.zsp-battlenet{ 
+.sp-icon-battlenet{ 
 	background: #0096CD;
 	i:before{ content: "\e00c"; }
 }
-.zsp-beam{ 
+.sp-icon-beam{ 
 	background: #536dfe;
 	i:before{ content: "\e00d"; }
 }
-.zsp-bebee{ 
+.sp-icon-bebee{ 
 	background: #f28f16;
 	i:before{ content: "\e00e"; }
 }
-.zsp-bebo{ 
+.sp-icon-bebo{ 
 	background: #EF1011;
 	i:before{ content: "\e00f"; }
 }
-.zsp-behance{ 
+.sp-icon-behance{ 
 	background: #000000;
 	i:before{ content: "\e010"; }
 }
-.zsp-blizzard{ 
+.sp-icon-blizzard{ 
 	background: #01B2F1;
 	i:before{ content: "\e011"; }
 }
-.zsp-blogger{ 
+.sp-icon-blogger{ 
 	background: #ec661c;
 	i:before{ content: "\e012"; }
 }
-.zsp-buffer{ 
+.sp-icon-buffer{ 
 	background: #000000;
 	i:before{ content: "\e013"; }
 }
-.zsp-chrome{ 
+.sp-icon-chrome{ 
 	background: #757575;
 	i:before{ content: "\e014"; }
 }
-.zsp-coderwall{ 
+.sp-icon-coderwall{ 
 	background: #3E8DCC;
 	i:before{ content: "\e015"; }
 }
-.zsp-curse{ 
+.sp-icon-curse{ 
 	background: #f26522;
 	i:before{ content: "\e016"; }
 }
-.zsp-dailymotion{ 
+.sp-icon-dailymotion{ 
 	background: #004e72;
 	i:before{ content: "\e017"; }
 }
-.zsp-deezer{ 
+.sp-icon-deezer{ 
 	background: #32323d;
 	i:before{ content: "\e018"; }
 }
-.zsp-delicious{ 
+.sp-icon-delicious{ 
 	background: #020202;
 	i:before{ content: "\e019"; }
 }
-.zsp-deviantart{ 
+.sp-icon-deviantart{ 
 	background: #c5d200;
 	i:before{ content: "\e01a"; }
 }
-.zsp-diablo{ 
+.sp-icon-diablo{ 
 	background: #8B1209;
 	i:before{ content: "\e01b"; }
 }
-.zsp-digg{ 
+.sp-icon-digg{ 
 	background: #1d1d1b;
 	i:before{ content: "\e01c"; }
 }
-.zsp-discord{ 
+.sp-icon-discord{ 
 	background: #7289da;
 	i:before{ content: "\e01d"; }
 }
-.zsp-disqus{ 
+.sp-icon-disqus{ 
 	background: #2e9fff;
 	i:before{ content: "\e01e"; }
 }
-.zsp-douban{ 
+.sp-icon-douban{ 
 	background: #3ca353;
 	i:before{ content: "\e01f"; }
 }
-.zsp-draugiem{ 
+.sp-icon-draugiem{ 
 	background: #ffa32b;
 	i:before{ content: "\e020"; }
 }
-.zsp-dribbble{ 
+.sp-icon-dribbble{ 
 	background: #e84d88;
 	i:before{ content: "\e021"; }
 }
-.zsp-drupal{ 
+.sp-icon-drupal{ 
 	background: #00598e;
 	i:before{ content: "\e022"; }
 }
-.zsp-ebay{ 
+.sp-icon-ebay{ 
 	background: #333333;
 	i:before{ content: "\e023"; }
 }
-.zsp-ello{ 
+.sp-icon-ello{ 
 	background: #000000;
 	i:before{ content: "\e024"; }
 }
-.zsp-endomodo{ 
+.sp-icon-endomodo{ 
 	background: #86ad00;
 	i:before{ content: "\e025"; }
 }
-.zsp-envato{ 
+.sp-icon-envato{ 
 	background: #597c3a;
 	i:before{ content: "\e026"; }
 }
-.zsp-etsy{ 
+.sp-icon-etsy{ 
 	background: #F56400;
 	i:before{ content: "\e027"; }
 }
-.zsp-facebook{ 
+.sp-icon-facebook{ 
 	background: #3e5b98;
 	i:before{ content: "\e028"; }
 }
-.zsp-feedburner{ 
+.sp-icon-feedburner{ 
 	background: #ffcc00;
 	i:before{ content: "\e029"; }
 }
-.zsp-filmweb{ 
+.sp-icon-filmweb{ 
 	background: #ffc404;
 	i:before{ content: "\e02a"; }
 }
-.zsp-firefox{ 
+.sp-icon-firefox{ 
 	background: #484848;
 	i:before{ content: "\e02b"; }
 }
-.zsp-flattr{ 
+.sp-icon-flattr{ 
 	background: #F67C1A;
 	i:before{ content: "\e02c"; }
 }
-.zsp-flickr{ 
+.sp-icon-flickr{ 
 	background: #1e1e1b;
 	i:before{ content: "\e02d"; }
 }
-.zsp-formulr{ 
+.sp-icon-formulr{ 
 	background: #ff5a60;
 	i:before{ content: "\e02e"; }
 }
-.zsp-forrst{ 
+.sp-icon-forrst{ 
 	background: #5B9A68;
 	i:before{ content: "\e02f"; }
 }
-.zsp-foursquare{ 
+.sp-icon-foursquare{ 
 	background: #f94877;
 	i:before{ content: "\e030"; }
 }
-.zsp-friendfeed{ 
+.sp-icon-friendfeed{ 
 	background: #2F72C4;
 	i:before{ content: "\e031"; }
 }
-.zsp-gamejolt{ 
+.sp-icon-gamejolt{ 
 	background: #191919;
 	i:before{ content: "\e901"; }
 }
-.zsp-github{ 
+.sp-icon-github{ 
 	background: #221e1b;
 	i:before{ content: "\e032"; }
 }
-.zsp-goodreads{ 
+.sp-icon-goodreads{ 
 	background: #463020;
 	i:before{ content: "\e033"; }
 }
-.zsp-google{ 
+.sp-icon-google{ 
 	background: #4285f4;
 	i:before{ content: "\e034"; }
 }
-.zsp-googlegroups{ 
+.sp-icon-googlegroups{ 
 	background: #4F8EF5;
 	i:before{ content: "\e036"; }
 }
-.zsp-googlephotos{ 
+.sp-icon-googlephotos{ 
 	background: #212121;
 	i:before{ content: "\e037"; }
 }
-.zsp-googleplus{ 
+.sp-icon-googleplus{ 
 	background: #dd4b39;
 	i:before{ content: "\e038"; }
 }
-.zsp-googlescholar{ 
+.sp-icon-googlescholar{ 
 	background: #4285f4;
 	i:before{ content: "\e035"; }
 }
-.zsp-grooveshark{ 
+.sp-icon-grooveshark{ 
 	background: #000000;
 	i:before{ content: "\e039"; }
 }
-.zsp-hackerrank{ 
+.sp-icon-hackerrank{ 
 	background: #2ec866;
 	i:before{ content: "\e03a"; }
 }
-.zsp-hearthstone{ 
+.sp-icon-hearthstone{ 
 	background: #EC9313;
 	i:before{ content: "\e03b"; }
 }
-.zsp-hellocoton{ 
+.sp-icon-hellocoton{ 
 	background: #d30d66;
 	i:before{ content: "\e03c"; }
 }
-.zsp-heroes{ 
+.sp-icon-heroes{ 
 	background: #2397F7;
 	i:before{ content: "\e03d"; }
 }
-.zsp-hitbox{ 
+.sp-icon-hitbox{ 
 	background: #99CC00;
 	i:before{ content: "\e03e"; }
 }
-.zsp-horde{ 
+.sp-icon-horde{ 
 	background: #84121C;
 	i:before{ content: "\e03f"; }
 }
-.zsp-houzz{ 
+.sp-icon-houzz{ 
 	background: #7CC04B;
 	i:before{ content: "\e040"; }
 }
-.zsp-icq{ 
+.sp-icon-icq{ 
 	background: #7EBD00;
 	i:before{ content: "\e041"; }
 }
-.zsp-identica{ 
+.sp-icon-identica{ 
 	background: #000000;
 	i:before{ content: "\e042"; }
 }
-.zsp-imdb{ 
+.sp-icon-imdb{ 
 	background: #E8BA00;
 	i:before{ content: "\e043"; }
 }
-.zsp-instagram{ 
+.sp-icon-instagram{ 
 	background: #000000;
 	i:before{ content: "\e044"; }
 }
-.zsp-issuu{ 
+.sp-icon-issuu{ 
 	background: #F26F61;
 	i:before{ content: "\e045"; }
 }
-.zsp-istock{ 
+.sp-icon-istock{ 
 	background: #000000;
 	i:before{ content: "\e046"; }
 }
-.zsp-itunes{ 
+.sp-icon-itunes{ 
 	background: #ff5e51;
 	i:before{ content: "\e047"; }
 }
-.zsp-keybase{ 
+.sp-icon-keybase{ 
 	background: #FF7100;
 	i:before{ content: "\e048"; }
 }
-.zsp-lanyrd{ 
+.sp-icon-lanyrd{ 
 	background: #3c80c9;
 	i:before{ content: "\e049"; }
 }
-.zsp-lastfm{ 
+.sp-icon-lastfm{ 
 	background: #d41316;
 	i:before{ content: "\e04a"; }
 }
-.zsp-line{ 
+.sp-icon-line{ 
 	background: #00B901;
 	i:before{ content: "\e04b"; }
 }
-.zsp-linkedin{ 
+.sp-icon-linkedin{ 
 	background: #3371b7;
 	i:before{ content: "\e04c"; }
 }
-.zsp-livejournal{ 
+.sp-icon-livejournal{ 
 	background: #0099CC;
 	i:before{ content: "\e04d"; }
 }
-.zsp-lyft{ 
+.sp-icon-lyft{ 
 	background: #FF00BF;
 	i:before{ content: "\e04e"; }
 }
-.zsp-macos{ 
+.sp-icon-macos{ 
 	background: #000000;
 	i:before{ content: "\e04f"; }
 }
-.zsp-mail{ 
+.sp-icon-mail{ 
 	background: #000000;
 	i:before{ content: "\e050"; }
 }
-.zsp-medium{ 
+.sp-icon-medium{ 
 	background: #000000;
 	i:before{ content: "\e051"; }
 }
-.zsp-meetup{ 
+.sp-icon-meetup{ 
 	background: #e2373c;
 	i:before{ content: "\e052"; }
 }
-.zsp-mixcloud{ 
+.sp-icon-mixcloud{ 
 	background: #000000;
 	i:before{ content: "\e053"; }
 }
-.zsp-modelmayhem{ 
+.sp-icon-modelmayhem{ 
 	background: #000000;
 	i:before{ content: "\e054"; }
 }
-.zsp-mumble{ 
+.sp-icon-mumble{ 
 	background: #5AB5D1;
 	i:before{ content: "\e055"; }
 }
-.zsp-myspace{ 
+.sp-icon-myspace{ 
 	background: #323232;
 	i:before{ content: "\e056"; }
 }
-.zsp-newsvine{ 
+.sp-icon-newsvine{ 
 	background: #075B2F;
 	i:before{ content: "\e057"; }
 }
-.zsp-nintendo{ 
+.sp-icon-nintendo{ 
 	background: #F58A33;
 	i:before{ content: "\e058"; }
 }
-.zsp-npm{ 
+.sp-icon-npm{ 
 	background: #C12127;
 	i:before{ content: "\e059"; }
 }
-.zsp-odnoklassniki{ 
+.sp-icon-odnoklassniki{ 
 	background: #f48420;
 	i:before{ content: "\e05a"; }
 }
-.zsp-openid{ 
+.sp-icon-openid{ 
 	background: #f78c40;
 	i:before{ content: "\e05b"; }
 }
-.zsp-opera{ 
+.sp-icon-opera{ 
 	background: #FF1B2D;
 	i:before{ content: "\e05c"; }
 }
-.zsp-outlook{ 
+.sp-icon-outlook{ 
 	background: #0072C6;
 	i:before{ content: "\e05d"; }
 }
-.zsp-overwatch{ 
+.sp-icon-overwatch{ 
 	background: #9E9E9E;
 	i:before{ content: "\e05e"; }
 }
-.zsp-patreon{ 
+.sp-icon-patreon{ 
 	background: #E44727;
 	i:before{ content: "\e05f"; }
 }
-.zsp-paypal{ 
+.sp-icon-paypal{ 
 	background: #009cde;
 	i:before{ content: "\e060"; }
 }
-.zsp-periscope{ 
+.sp-icon-periscope{ 
 	background: #3AA4C6;
 	i:before{ content: "\e061"; }
 }
-.zsp-persona{ 
+.sp-icon-persona{ 
 	background: #e6753d;
 	i:before{ content: "\e062"; }
 }
-.zsp-pinterest{ 
+.sp-icon-pinterest{ 
 	background: #c92619;
 	i:before{ content: "\e063"; }
 }
-.zsp-play{ 
+.sp-icon-play{ 
 	background: #000000;
 	i:before{ content: "\e064"; }
 }
-.zsp-player{ 
+.sp-icon-player{ 
 	background: #6E41BD;
 	i:before{ content: "\e065"; }
 }
-.zsp-playstation{ 
+.sp-icon-playstation{ 
 	background: #000000;
 	i:before{ content: "\e066"; }
 }
-.zsp-pocket{ 
+.sp-icon-pocket{ 
 	background: #ED4055;
 	i:before{ content: "\e067"; }
 }
-.zsp-qq{ 
+.sp-icon-qq{ 
 	background: #4297d3;
 	i:before{ content: "\e068"; }
 }
-.zsp-quora{ 
+.sp-icon-quora{ 
 	background: #cb202d;
 	i:before{ content: "\e069"; }
 }
-.zsp-raidcall{ 
+.sp-icon-raidcall{ 
 	background: #073558;
 	i:before{ content: "\e06a"; }
 }
-.zsp-ravelry{ 
+.sp-icon-ravelry{ 
 	background: #B6014C;
 	i:before{ content: "\e06b"; }
 }
-.zsp-reddit{ 
+.sp-icon-reddit{ 
 	background: #e74a1e;
 	i:before{ content: "\e06c"; }
 }
-.zsp-renren{ 
+.sp-icon-renren{ 
 	background: #2266b0;
 	i:before{ content: "\e06d"; }
 }
-.zsp-researchgate{ 
+.sp-icon-researchgate{ 
 	background: #00CCBB;
 	i:before{ content: "\e06e"; }
 }
-.zsp-residentadvisor{ 
+.sp-icon-residentadvisor{ 
 	background: #B3BE1B;
 	i:before{ content: "\e06f"; }
 }
-.zsp-reverbnation{ 
+.sp-icon-reverbnation{ 
 	background: #000000;
 	i:before{ content: "\e070"; }
 }
-.zsp-rss{ 
+.sp-icon-rss{ 
 	background: #f26109;
 	i:before{ content: "\e071"; }
 }
-.zsp-sharethis{ 
+.sp-icon-sharethis{ 
 	background: #01bf01;
 	i:before{ content: "\e072"; }
 }
-.zsp-skype{ 
+.sp-icon-skype{ 
 	background: #28abe3;
 	i:before{ content: "\e073"; }
 }
-.zsp-slideshare{ 
+.sp-icon-slideshare{ 
 	background: #4ba3a6;
 	i:before{ content: "\e074"; }
 }
-.zsp-smugmug{ 
+.sp-icon-smugmug{ 
 	background: #ACFD32;
 	i:before{ content: "\e075"; }
 }
-.zsp-snapchat{ 
+.sp-icon-snapchat{ 
 	background: #ffdf00;
 	i:before{ content: "\e076"; }
 }
-.zsp-songkick{ 
+.sp-icon-songkick{ 
 	background: #F80046;
 	i:before{ content: "\e077"; }
 }
-.zsp-soundcloud{ 
+.sp-icon-soundcloud{ 
 	background: #fe3801;
 	i:before{ content: "\e078"; }
 }
-.zsp-spotify{ 
+.sp-icon-spotify{ 
 	background: #7bb342;
 	i:before{ content: "\e079"; }
 }
-.zsp-spreadshirt{ 
+.sp-icon-spreadshirt{ 
 	background: #00b2a6;
 	i:before{ content: "\e900"; }
 }
-.zsp-stackexchange{ 
+.sp-icon-stackexchange{ 
 	background: #2f2f2f;
 	i:before{ content: "\e07a"; }
 }
-.zsp-stackoverflow{ 
+.sp-icon-stackoverflow{ 
 	background: #FD9827;
 	i:before{ content: "\e07b"; }
 }
-.zsp-starcraft{ 
+.sp-icon-starcraft{ 
 	background: #002250;
 	i:before{ content: "\e07c"; }
 }
-.zsp-stayfriends{ 
+.sp-icon-stayfriends{ 
 	background: #F08A1C;
 	i:before{ content: "\e07d"; }
 }
-.zsp-steam{ 
+.sp-icon-steam{ 
 	background: #171a21;
 	i:before{ content: "\e07e"; }
 }
-.zsp-storehouse{ 
+.sp-icon-storehouse{ 
 	background: #25B0E6;
 	i:before{ content: "\e07f"; }
 }
-.zsp-strava{ 
+.sp-icon-strava{ 
 	background: #FC4C02;
 	i:before{ content: "\e080"; }
 }
-.zsp-streamjar{ 
+.sp-icon-streamjar{ 
 	background: #503a60;
 	i:before{ content: "\e081"; }
 }
-.zsp-stumbleupon{ 
+.sp-icon-stumbleupon{ 
 	background: #e64011;
 	i:before{ content: "\e082"; }
 }
-.zsp-swarm{ 
+.sp-icon-swarm{ 
 	background: #FC9D3C;
 	i:before{ content: "\e083"; }
 }
-.zsp-teamspeak{ 
+.sp-icon-teamspeak{ 
 	background: #465674;
 	i:before{ content: "\e084"; }
 }
-.zsp-teamviewer{ 
+.sp-icon-teamviewer{ 
 	background: #168EF4;
 	i:before{ content: "\e085"; }
 }
-.zsp-technorati{ 
+.sp-icon-technorati{ 
 	background: #5cb030;
 	i:before{ content: "\e086"; }
 }
-.zsp-telegram{ 
+.sp-icon-telegram{ 
 	background: #0088cc;
 	i:before{ content: "\e087"; }
 }
-.zsp-trello{ 
+.sp-icon-trello{ 
 	background: #0079bf;
 	i:before{ content: "\e902"; }
 }
-.zsp-tripadvisor{ 
+.sp-icon-tripadvisor{ 
 	background: #4B7E37;
 	i:before{ content: "\e088"; }
 }
-.zsp-tripit{ 
+.sp-icon-tripit{ 
 	background: #1982C3;
 	i:before{ content: "\e089"; }
 }
-.zsp-triplej{ 
+.sp-icon-triplej{ 
 	background: #E53531;
 	i:before{ content: "\e08a"; }
 }
-.zsp-tumblr{ 
+.sp-icon-tumblr{ 
 	background: #45556c;
 	i:before{ content: "\e08b"; }
 }
-.zsp-tunein{ 
+.sp-icon-tunein{ 
 	background: #36b4a7;
 	i:before{ content: "\e903"; }
 }
-.zsp-twitch{ 
+.sp-icon-twitch{ 
 	background: #6441a5;
 	i:before{ content: "\e08c"; }
 }
-.zsp-twitter{ 
+.sp-icon-twitter{ 
 	background: #4da7de;
 	i:before{ content: "\e08d"; }
 }
-.zsp-uber{ 
+.sp-icon-uber{ 
 	background: #000000;
 	i:before{ content: "\e08e"; }
 }
-.zsp-ventrilo{ 
+.sp-icon-ventrilo{ 
 	background: #77808A;
 	i:before{ content: "\e08f"; }
 }
-.zsp-viadeo{ 
+.sp-icon-viadeo{ 
 	background: #e4a000;
 	i:before{ content: "\e090"; }
 }
-.zsp-viber{ 
+.sp-icon-viber{ 
 	background: #7b519d;
 	i:before{ content: "\e091"; }
 }
-.zsp-viewbug{ 
+.sp-icon-viewbug{ 
 	background: #2B9FCF;
 	i:before{ content: "\e092"; }
 }
-.zsp-vimeo{ 
+.sp-icon-vimeo{ 
 	background: #51b5e7;
 	i:before{ content: "\e093"; }
 }
-.zsp-vine{ 
+.sp-icon-vine{ 
 	background: #00b389;
 	i:before{ content: "\e094"; }
 }
-.zsp-vkontakte{ 
+.sp-icon-vkontakte{ 
 	background: #5a7fa6;
 	i:before{ content: "\e095"; }
 }
-.zsp-warcraft{ 
+.sp-icon-warcraft{ 
 	background: #1EB10A;
 	i:before{ content: "\e096"; }
 }
-.zsp-wechat{ 
+.sp-icon-wechat{ 
 	background: #09b507;
 	i:before{ content: "\e097"; }
 }
-.zsp-weibo{ 
+.sp-icon-weibo{ 
 	background: #e31c34;
 	i:before{ content: "\e098"; }
 }
-.zsp-whatsapp{ 
+.sp-icon-whatsapp{ 
 	background: #20B038;
 	i:before{ content: "\e099"; }
 }
-.zsp-wikipedia{ 
+.sp-icon-wikipedia{ 
 	background: #000000;
 	i:before{ content: "\e09a"; }
 }
-.zsp-windows{ 
+.sp-icon-windows{ 
 	background: #00BDF6;
 	i:before{ content: "\e09b"; }
 }
-.zsp-wordpress{ 
+.sp-icon-wordpress{ 
 	background: #464646;
 	i:before{ content: "\e09c"; }
 }
-.zsp-wykop{ 
+.sp-icon-wykop{ 
 	background: #328efe;
 	i:before{ content: "\e09d"; }
 }
-.zsp-xbox{ 
+.sp-icon-xbox{ 
 	background: #92C83E;
 	i:before{ content: "\e09e"; }
 }
-.zsp-xing{ 
+.sp-icon-xing{ 
 	background: #005a60;
 	i:before{ content: "\e09f"; }
 }
-.zsp-yahoo{ 
+.sp-icon-yahoo{ 
 	background: #6e2a85;
 	i:before{ content: "\e0a0"; }
 }
-.zsp-yammer{ 
+.sp-icon-yammer{ 
 	background: #1175C4;
 	i:before{ content: "\e0a1"; }
 }
-.zsp-yandex{ 
+.sp-icon-yandex{ 
 	background: #FF0000;
 	i:before{ content: "\e0a2"; }
 }
-.zsp-yelp{ 
+.sp-icon-yelp{ 
 	background: #c83218;
 	i:before{ content: "\e0a3"; }
 }
-.zsp-younow{ 
+.sp-icon-younow{ 
 	background: #61C03E;
 	i:before{ content: "\e0a4"; }
 }
-.zsp-youtube{ 
+.sp-icon-youtube{ 
 	background: #e02a20;
 	i:before{ content: "\e0a5"; }
 }
-.zsp-zapier{ 
+.sp-icon-zapier{ 
 	background: #FF4A00;
 	i:before{ content: "\e0a6"; }
 }
-.zsp-zerply{ 
+.sp-icon-zerply{ 
 	background: #9DBC7A;
 	i:before{ content: "\e0a7"; }
 }
-.zsp-zomato{ 
+.sp-icon-zomato{ 
 	background: #cb202d;
 	i:before{ content: "\e0a8"; }
 }
-.zsp-zynga{ 
+.sp-icon-zynga{ 
 	background: #DC0606;
 	i:before{ content: "\e0a9"; }
 }

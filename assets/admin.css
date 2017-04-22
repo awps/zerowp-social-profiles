@@ -1,5 +1,77 @@
-.zsp-block {
-  background: red;
+.zsp-grid,
+.zsp-grid > .zsp-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  margin-left: -7px;
+  margin-right: -7px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+.zsp-grid,
+.zsp-grid > .zsp-grid,
+.zsp-grid > .flex {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+.zsp-grid > * {
+  -webkit-flex-basis: 100%;
+  flex-basis: 100%;
+  max-width: 100%;
+}
+.zsp-grid > *,
+.zsp-grid > .zsp-grid {
+  list-style: none;
+  margin: 0;
+  float: none;
+  padding-left: 7px;
+  padding-right: 7px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.zsp-grid > .col-3 {
+  -webkit-flex-basis: 25%;
+  flex-basis: 25%;
+  max-width: 25%;
+}
+.zsp-grid > .col-4 {
+  -webkit-flex-basis: 33.333333333333336%;
+  flex-basis: 33.333333333333336%;
+  max-width: 33.33333333%;
+}
+.zsp-grid > .col-6 {
+  -webkit-flex-basis: 50%;
+  flex-basis: 50%;
+  max-width: 50%;
+}
+.zsp-grid > .col-12 {
+  -webkit-flex-basis: 100%;
+  flex-basis: 100%;
+  max-width: 100%;
+}
+.zsp-grid {
+  margin-top: 15px;
+}
+.zsp-widget-row {
+  margin: 0 0 20px;
+}
+.zsp-widget-row .label {
+  margin: 0 0 5px;
+  font-weight: 700;
+}
+.zsp-widget-row .zsp-description {
+  font-style: normal;
+  color: #72777c;
+  margin: 0;
+  padding: 0;
 }
 
 /*# sourceMappingURL=admin.css.map */
