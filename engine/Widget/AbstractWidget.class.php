@@ -1,7 +1,7 @@
 <?php
-namespace SocialProfiles;
+namespace SocialProfiles\Widget;
 
-abstract class WidgetBase extends \WP_Widget{
+abstract class AbstractWidget extends \WP_Widget{
 	
 	/*
 	-------------------------------------------------------------------------------
@@ -59,15 +59,23 @@ abstract class WidgetBase extends \WP_Widget{
     -------------------------------------------------------------------------------
     */
 	public function addField( $id, $type, $instance, $settings = array() ){
+
+		// Filter data
+		$settings = apply_filters( "zsp_widget_field_{$id}", $settings, $type, $this );
+
+		// Variables
 		$value = isset( $instance[ $id ] ) ? $instance[ $id ] : ( isset( $settings[ 'default' ] ) ? $settings[ 'default' ] : '' );
 		$grid  = !empty( $settings[ 'grid' ] ) ? ' col-'. $settings[ 'grid' ] : '';
 		$class = !empty( $settings[ 'class' ] ) ? esc_attr( $settings[ 'class' ] ) : '';
 		$name  = esc_attr( $this->get_field_name( $id ) );
 
+		// The title field, if exists, must have an ID attr. For other fields, 
+		// add the ID only if is explicitly set to true.
 		$attr_id = ( !empty( $settings[ 'attr_id' ] ) || 'title' === $id ) 
 						? ' id="'. esc_attr( $this->get_field_id( $id ) ) .'"' 
 						: '';
 
+		// Field row.
 		$output = '<div class="zsp-widget-row'. $grid .'">';
 			$output .= '<label>';
 
@@ -124,6 +132,41 @@ abstract class WidgetBase extends \WP_Widget{
 								}
 							}
 
+						$output .= '</select>';
+
+						break;
+					
+					case 'networks':
+						$brands = ZSP()->brands();
+
+						$output .= '<input class="zsp-placeholder-field" type="hidden" value="" name="'. $name .'" />';
+
+						$output .= '<div class="zsp-brands-selected-list">';
+							if( !empty($value) && is_array($value) ){
+								foreach ($value as $brand => $b) {
+									$output .= '<div class="zsp-single-brand '. $brand .'" title="'. esc_attr( $brands[ $brand ][1] ) .'">';
+									$output .= '<input type="text" class="widefat" value="'. esc_attr( $b['label'] ) .'" ';
+									$output .= 'name="'. $name .'['. $brand .'][label]" placeholder="'. __( 'Follow us on', 'social-profiles' ) .'" ';
+									$output .= '/>';
+									$output .= '<input type="text" class="widefat" value="'. esc_attr( $b['url'] ) .'" ';
+									$output .= 'name="'. $name .'['. $brand .'][url]" placeholder="'. esc_attr( $brands[ $brand ][1] ) .'" ';
+									$output .= '/>';
+									$output .= '<span class="dashicons dashicons-dismiss zsp-delete-single-brand"></span>';
+									$output .= '<span class="dashicons dashicons-menu zsp-move-single-brand"></span>';
+									$output .= '</div>';
+								}
+							}
+						$output .= '</div>';
+
+						$output .= '<select class="zsp-brands-dropdown" data-nameholder="'. $name .'">';
+
+							if( !empty( $settings[ 'options_label' ] ) ){
+								$output .= '<option value="">'. $settings[ 'options_label' ] .'</option>';
+							}
+
+							foreach ($brands as $brand => $b) {
+								$output .= '<option value="'. $brand .'">'. $b[1] .'</option>';
+							}
 						$output .= '</select>';
 
 						break;

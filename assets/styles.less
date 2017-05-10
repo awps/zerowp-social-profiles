@@ -24,13 +24,18 @@
 	border-radius: 3px;
 	background: #333;
 	color: #fff;
+	font-size: 16px;
 	.transition( opacity 0.2s );
 	
 	&:hover{
 		opacity: 0.8;
 	}
-
+	
+	// Icon
+	// ------------
 	i{
+		display: inline-block;
+
 		/* use !important to prevent issues with browser extensions that change fonts */
 		font-family: 'zspicon' !important;
 		speak: none;
@@ -47,33 +52,37 @@
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
 	}
-
-	&.large{
-		width: 50px;
-		height: 50px;
-		text-align: center;
-		font-size: 24px;
-		padding: 7px 0;
-	}
-
-	&.extra-large{
-		width: 100px;
-		height: 100px;
-		text-align: center;
-		font-size: 48px;
-		padding: 14px 0;
-	}
-
-	&.rounded{
-		border-radius: 50%;
-	}
-
+	
+	// Radius
+	// --------------
 	&.soft{
 		border-radius: 15%;
 	}
 
 	&.square{
 		border-radius: 0;
+	}
+	
+	// Shape
+	// -------------
+	&.minimal{
+		color: inherit;
+		background: transparent;
+	}
+
+	&.transparent{
+		background: transparent;
+	}
+
+	&.circle{
+		border-radius: 50%;
+	}
+	
+	&.rotated{
+		.transform( rotate(45deg) );
+		i{
+			.transform( rotate(-45deg) );
+		}
 	}
 
 	&.burst{
@@ -114,17 +123,37 @@
 	&.burst-alt{
 		margin: 7px;
 	}
+	
+	// Size
+	// ------------
+	&.large{
+		width: 50px;
+		height: 50px;
+		text-align: center;
+		font-size: 24px;
+		padding: 7px 0;
+	}
+
+	&.extra-large{
+		width: 100px;
+		height: 100px;
+		text-align: center;
+		font-size: 48px;
+		padding: 14px 0;
+	}
 
 	&.large{
 		&.burst,
-		&.burst-alt{
+		&.burst-alt,
+		&.rotated{
 			margin: 10px;
 		}
 	}
 
 	&.extra-large{
 		&.burst,
-		&.burst-alt{
+		&.burst-alt,
+		&.rotated{
 			margin: 20px;
 		}
 	}
@@ -134,17 +163,17 @@
 // ----------------------------------------------------------------------------
 // Widget
 // ----------------------------------------------------------------------------
-.zsp-social-profiles-widget{
+.zsp-social-profiles-list{
 	.network{
 		display: block;
 		position: relative;
-		padding-left: 65px;
-		min-height: 50px;
-		margin-bottom: 25px;
+		padding-left: 45px;
+		min-height: 30px;
+		margin-bottom: 15px;
 		> [class*="sp-icon-"]{
 			position: absolute;
 			left: 0;
-			top: 0;
+			top: 8px;
 			display: block;
 			margin: 0;
 		}
@@ -156,6 +185,32 @@
 				position: relative;
 				display: inline-block;
 				font-weight: 700;
+			}
+		}
+
+		&.large{
+			padding-left: 65px;
+			min-height: 50px;
+			margin-bottom: 25px;
+			> [class*="sp-icon-"]{
+				top: 0;
+			}
+		}
+
+		&.extra-large{
+			padding-left: 115px;
+			min-height: 100px;
+			margin-bottom: 25px;
+			> [class*="sp-icon-"]{
+				top: 0;
+			}
+		}
+		&.extra-large{
+			&.burst,
+			&.burst-alt,
+			&.rotated{
+				min-height: 120px;
+				padding-left: 120px;
 			}
 		}
 	}

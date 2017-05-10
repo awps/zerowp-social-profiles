@@ -68,3 +68,70 @@
 	}
 
 }
+
+.zsp-widget-tabs-header{
+	display: block;
+	width: 100%;
+	margin-bottom: -2px;
+	padding: 0 7px;
+	position: relative;
+	z-index: 3;
+	span{
+		position: relative;
+		display: inline-block;
+		padding: 7px 10px;
+		border: 1px solid transparent;
+		margin-right: -1px;
+		font-weight: 700;
+		font-size: 12px;
+		z-index: 1;
+		cursor: pointer;
+		&.wp-ui-text-highlight{
+			border-color: #ddd;
+			border-bottom: 0;
+			z-index: 3;
+			background: #fafafa;
+		}
+	}
+	span:not(.wp-ui-text-highlight){
+		color: #777;
+		&:hover{
+			color: #444;
+		}
+	}
+}
+.zsp-grid.zsp-widget-tab{
+	position: relative;
+	margin: 0 0 20px;
+	padding: 7px;
+	padding-top: 20px;
+	border: 1px solid #ddd;
+	background: #fafafa;
+	z-index: 1;
+	display: none;
+	&.active{
+		.display( flex );
+	}
+}
+
+.zsp-single-brand{
+	position: relative;
+	padding-right: 25px;
+	padding-left: 25px;
+	margin-bottom: 10px;
+	> .zsp-delete-single-brand{
+		position: absolute;
+		display: inline-block;
+		top: 3px;
+		right: 0;
+		color: red;
+	}
+	> .zsp-move-single-brand{
+		position: absolute;
+		display: inline-block;
+		top: 3px;
+		left: 0;
+		color: #888;
+		cursor: move;
+	}
+}

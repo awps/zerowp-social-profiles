@@ -97,15 +97,18 @@ final class ZeroWPSocialProfiles{
 
 			// Icon shapes
 			'icon_shape' => apply_filters( 'zsp_icon_shape', array(
-				''          => __( 'Default', 'social-profiles' ),
-				'burst'     => __( 'Burst', 'social-profiles' ),
-				'burst-alt' => __( 'Burst alt', 'social-profiles' ),
+				''            => __( 'Default', 'social-profiles' ),
+				'circle'      => __( 'Circle', 'social-profiles' ),
+				'burst'       => __( 'Burst', 'social-profiles' ),
+				'burst-alt'   => __( 'Burst alt', 'social-profiles' ),
+				'rotated'     => __( 'Rotated', 'social-profiles' ),
+				'transparent' => __( 'Transparent', 'social-profiles' ),
+				'minimal'     => __( 'Minimal', 'social-profiles' ),
 			)),
 
 			// Icon radius
 			'icon_radius' => apply_filters( 'zsp_icon_radius', array(
 				''          => __( 'Default', 'social-profiles' ),
-				'rounded'   => __( 'Rounded', 'social-profiles' ),
 				'soft'      => __( 'Soft', 'social-profiles' ),
 				'square'    => __( 'Square', 'social-profiles' ),
 			)),
@@ -208,6 +211,11 @@ final class ZeroWPSocialProfiles{
 
 		$this->loadTextDomain();
 
+		$this->addUserFieldType( 'input', 'SocialProfiles\User\FieldInput' );
+		$this->addUserFieldType( 'textarea', 'SocialProfiles\User\FieldTextarea' );
+		$this->addUserFieldType( 'select', 'SocialProfiles\User\FieldSelect' );
+		$this->addUserFieldType( 'radio', 'SocialProfiles\User\FieldRadio' );
+
 		do_action( 'zsp_init' );
 	}
 
@@ -221,7 +229,7 @@ final class ZeroWPSocialProfiles{
 	public function initWidgets() {
 		do_action( 'before_zsp_widgets_init' );
 
-		register_widget( 'SocialProfiles\Widget' );
+		register_widget( 'SocialProfiles\Widget\NetworksList' );
 
 		do_action( 'zsp_widgets_init' );
 	}
@@ -253,11 +261,22 @@ final class ZeroWPSocialProfiles{
 
 		if( !empty( $is_customize ) || ( is_admin() && ( 'widgets' == $screen->base ) ) ){
 
-			wp_register_style( $id . '-admin-css', $assets . 'admin.css', '', $this->version );
+			wp_register_style( 
+				$id . '-admin-css', 
+				$assets . 'admin.css', 
+				'', 
+				$this->version 
+			);
 			wp_enqueue_style( $id . '-admin-css' );
 
-			wp_enqueue_script('jquery-ui-core');
-			wp_enqueue_script('jquery-ui-sortable');
+			wp_register_script( 
+				$id .'-config', 
+				$assets .'config.js', 
+				array( 'jquery', 'jquery-ui-core', 'jquery-ui-sortable' ), 
+				$this->version, 
+				true 
+			);
+			wp_enqueue_script( $id .'-config' );
 
 		}
 	}
@@ -316,23 +335,7 @@ final class ZeroWPSocialProfiles{
 		return plugin_dir_path( __FILE__ );
 	}
 
-
 	//------------------------------------//--------------------------------------//
-	
-	/**
-	 * Icon Size
-	 *
-	 * Get all icon sizes
-	 *
-	 * @return array 
-	 */
-	// public function iconSize(){
-	// 	return apply_filters( 'zsp_icon_size', array(
-	// 		''            => __( 'Default', 'social-profiles' ),
-	// 		'large'       => __( 'Large', 'social-profiles' ),
-	// 		'extra-large' => __( 'Extra large', 'social-profiles' ),
-	// 	));
-	// }
 
 	/**
 	 * Brands
@@ -341,7 +344,7 @@ final class ZeroWPSocialProfiles{
 	 *
 	 * @return array 
 	 */
-	public function brands(){
+	public function brands( $key = false ){
 		$brands = array(
 			'500px'           => array( '#58a9de', ),
 			'8tracks'         => array( '#122c4b', ),
@@ -518,8 +521,26 @@ final class ZeroWPSocialProfiles{
 			'gamejolt'        => array( '#191919', ),
 			'tunein'          => array( '#36b4a7', 'TuneIn' ),
 		);
+	
+		foreach ($brands as $brand => $b) {
+			$brand_label = !empty($b[1]) ? $b[1] : ucfirst($brand);
+			$brands[$brand][1] = $brand_label;
+		}
+		
+		if( !empty($key) ){
+			if( isset( $brands[$key] ) ){
+				return $brands[$key];
+			}
+			else{
+				return false;
+			}
+		}
 
 		return apply_filters( 'zsp_brands', $brands );
+	}
+
+	public function addUserFieldType( $name, $class ){
+		new SocialProfiles\User\RegisterFieldType( $name, $class );
 	}
 
 }
