@@ -1,6 +1,5 @@
 <?php 
-namespace SocialProfiles\User;
-
+namespace SocialProfiles\GeneralForm;
 
 abstract class AbstractFieldType{
 
@@ -20,16 +19,15 @@ abstract class AbstractFieldType{
 		return $data;
 	}
 
-	public function display( $user ){
+	public function display( $saved_value ){
 		$id = $this->input_id;
 		$settings = $this->input_settings;
-		$saved_value = get_user_meta($user->ID, $id, false);
 
-		if( ! isset($saved_value[0]) ){
+		if( ! isset($saved_value) ){
 			$saved_value = isset($settings[ 'default' ]) ? $settings[ 'default' ] : '';
 		}
 		else{
-			$saved_value = $saved_value[0];
+			$saved_value = $saved_value;
 		}
 
 		$output = '<tr>';

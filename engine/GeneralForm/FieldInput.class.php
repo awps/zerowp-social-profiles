@@ -1,5 +1,5 @@
 <?php 
-namespace SocialProfiles\User;
+namespace SocialProfiles\GeneralForm;
 
 class FieldInput extends AbstractFieldType{
 

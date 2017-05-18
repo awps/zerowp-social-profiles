@@ -94,7 +94,7 @@ class NetworksList extends AbstractWidget{
 		-------------------------------------------------------------------*/
 		$brands = ZSP()->brands();
 
-		if( false === $custom_widget_output ){
+		if( false === $custom_widget_output && !empty($networks) ){
 
 			if( 'icons_list' === $list_style ){
 				foreach ( $networks as $net_name => $net) {

@@ -145,6 +145,9 @@ abstract class AbstractWidget extends \WP_Widget{
 							if( !empty($value) && is_array($value) ){
 								foreach ($value as $brand => $b) {
 									$output .= '<div class="zsp-single-brand '. $brand .'" title="'. esc_attr( $brands[ $brand ][1] ) .'">';
+									
+									$output .= '<div class="brand-label">'. esc_attr( $brands[ $brand ][1] ) .'</div>';
+									
 									$output .= '<input type="text" class="widefat" value="'. esc_attr( $b['label'] ) .'" ';
 									$output .= 'name="'. $name .'['. $brand .'][label]" placeholder="'. __( 'Follow us on', 'social-profiles' ) .'" ';
 									$output .= '/>';

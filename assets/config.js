@@ -23,14 +23,20 @@
 			var _val = _this.val();
 			var _label = _this.children('option').filter(':selected').text();
 			var _name = _this.data('nameholder');
+			var _placeholder = _this.prev();
 
 			if( _val !== '' &&  _this.prev().children().filter('.' + _val ).length < 1 ){
 				
 				var _html = '';
 				_html += '<div class="zsp-single-brand '+ _val +'" title="'+ _label +'">';
-				_html += '<input type="text" class="widefat" value="" ';
-				_html += 'name="'+ _name +'['+ _val +'][label]" placeholder="Follow us on" ';
-				_html += '/>';
+				_html += '<div class="brand-label">'+ _label +'</div>';
+				
+				if( ! _placeholder.hasClass('no-label') ){
+					_html += '<input type="text" class="widefat" value="" ';
+					_html += 'name="'+ _name +'['+ _val +'][label]" placeholder="Follow us on" ';
+					_html += '/>';
+				}
+				
 				_html += '<input type="text" class="widefat" value="" ';
 				_html += 'name="'+ _name +'['+ _val +'][url]" placeholder="'+ _label +'" ';
 				_html += '/>';
@@ -38,7 +44,7 @@
 				_html += '<span class="dashicons dashicons-menu zsp-move-single-brand"></span>';
 				_html += '</div>';
 
-				_this.prev().append( _html );
+				_placeholder.append( _html );
 			}
 		});
 

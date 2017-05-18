@@ -127,20 +127,23 @@
   padding-left: 25px;
   margin-bottom: 10px;
 }
-.zsp-single-brand > .zsp-delete-single-brand {
+.zsp-single-brand > .zsp-delete-single-brand,
+.zsp-single-brand > .zsp-move-single-brand {
   position: absolute;
   display: inline-block;
-  top: 3px;
+  top: 20px;
+}
+.zsp-single-brand > .zsp-delete-single-brand {
   right: 0;
   color: red;
 }
 .zsp-single-brand > .zsp-move-single-brand {
-  position: absolute;
-  display: inline-block;
-  top: 3px;
   left: 0;
   color: #888;
   cursor: move;
+}
+.zsp-single-brand .brand-label {
+  font-weight: 700;
 }
 
 /*# sourceMappingURL=admin.css.map */

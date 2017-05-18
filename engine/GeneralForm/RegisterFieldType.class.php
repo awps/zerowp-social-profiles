@@ -1,5 +1,5 @@
 <?php 
-namespace SocialProfiles\User;
+namespace SocialProfiles\GeneralForm;
 
 class RegisterFieldType{
 	public $name;
@@ -9,8 +9,8 @@ class RegisterFieldType{
 		$this->name = $name;
 		$this->class = $class;
 
-		if( !array_key_exists( $this->name, BaseForm::types() ) ){
-			add_filter( 'smk_user_form_field_types', array( $this, 'addType' ) );
+		if( !array_key_exists( $this->name, Base::types() ) ){
+			add_filter( 'zsp_form_field_types', array( $this, 'addType' ) );
 		}
 	}
 

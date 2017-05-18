@@ -12,50 +12,19 @@
  */
 namespace SocialProfiles\User;
 
-class Form {
+use SocialProfiles\GeneralForm\AbstractForm;
 
-	// Section ID
-	public $section;
+class Form extends AbstractForm {
 
-	// Section settings
-	public $settings;
+	public static $prefix = 'zsp_user_form_';
 
-	public function __construct( $section, $section_settings = array() ){
-		$this->section = $section;
-		$this->settings = wp_parse_args( $section_settings, array(
-			'title' => $section,
-		));
-
+	public function hooks(){
 		// If section is not registered
-		if( !array_key_exists( $this->section, Base::sections() ) ){
-			add_filter( 'smk_user_form_sections', array( $this, 'registerSection' ) );
+		if( !array_key_exists( $this->section, BaseForm::sections() ) ){
+			add_filter( static::$prefix . 'sections', array( $this, 'registerSection' ) );
 		}
 	}
 
-	/**
-	 * Register
-	 *
-	 * Register this section
-	 *
-	 * @filter-hook smk_user_form_sections
-	 *
-	 * @param array $prev Previously registered sections array  
-	 * @return array 
-	 */
-	public function registerSection( $prev ){
-		$new[ $this->section ] = $this->settings;
-		return wp_parse_args( $new, $prev );
-	}
-
-	/**
-	 * Add field
-	 *
-	 * Add a field to this section. This method is for public use.
-	 *
-	 * @param string $id The field ID. Must be unique. If it is already registered it will be ignored.  
-	 * @param array $settings The field settings.  
-	 * @return void 
-	 */
 	public function addField( $id , $settings = array() ){
 		$input = new AddField( $id, $settings, $this->section );
 	}

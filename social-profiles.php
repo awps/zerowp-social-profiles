@@ -211,10 +211,16 @@ final class ZeroWPSocialProfiles{
 
 		$this->loadTextDomain();
 
-		$this->addUserFieldType( 'input', 'SocialProfiles\User\FieldInput' );
-		$this->addUserFieldType( 'textarea', 'SocialProfiles\User\FieldTextarea' );
-		$this->addUserFieldType( 'select', 'SocialProfiles\User\FieldSelect' );
-		$this->addUserFieldType( 'radio', 'SocialProfiles\User\FieldRadio' );
+		$this->addUserFieldType( 'input', 'SocialProfiles\GeneralForm\FieldInput' );
+		$this->addUserFieldType( 'textarea', 'SocialProfiles\GeneralForm\FieldTextarea' );
+		$this->addUserFieldType( 'select', 'SocialProfiles\GeneralForm\FieldSelect' );
+		$this->addUserFieldType( 'radio', 'SocialProfiles\GeneralForm\FieldRadio' );
+		$this->addUserFieldType( 'brands_repeater', 'SocialProfiles\GeneralForm\FieldBrandsRepeater' );
+
+		new SocialProfiles\User\BaseForm;
+
+		$uf = new SocialProfiles\Create\UserFields;
+		$uf->addFields();
 
 		do_action( 'zsp_init' );
 	}
@@ -259,7 +265,7 @@ final class ZeroWPSocialProfiles{
 		$assets = $this->rootURL() . 'assets/';
 		$screen = get_current_screen();
 
-		if( !empty( $is_customize ) || ( is_admin() && ( 'widgets' == $screen->base ) ) ){
+		if( !empty( $is_customize ) || ( is_admin() && ( 'widgets' == $screen->base || 'profile' == $screen->base ) ) ){
 
 			wp_register_style( 
 				$id . '-admin-css', 
@@ -540,7 +546,7 @@ final class ZeroWPSocialProfiles{
 	}
 
 	public function addUserFieldType( $name, $class ){
-		new SocialProfiles\User\RegisterFieldType( $name, $class );
+		new SocialProfiles\GeneralForm\RegisterFieldType( $name, $class );
 	}
 
 }
