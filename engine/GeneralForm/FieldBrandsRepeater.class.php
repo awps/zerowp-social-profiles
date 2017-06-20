@@ -17,6 +17,10 @@ class FieldBrandsRepeater extends AbstractFieldType{
 					
 					$output .= '<div class="brand-label">'. esc_attr( $brands[ $brand ][1] ) .'</div>';
 					
+					$output .= '<input type="text" class="widefat" value="'. esc_attr( $b['url'] ) .'" ';
+					$output .= 'name="'. $id .'['. $brand .'][url]" placeholder="'. esc_attr( $brands[ $brand ][1] ) .'" ';
+					$output .= '/>';
+					
 					if( empty( $settings[ 'no_label' ] ) ){
 						$label = !empty( $b['label'] ) ? esc_attr( $b['label'] ) : '';
 						$output .= '<input type="text" class="widefat" value="'. $label .'" ';
@@ -24,9 +28,6 @@ class FieldBrandsRepeater extends AbstractFieldType{
 						$output .= '/>';
 					}
 					
-					$output .= '<input type="text" class="widefat" value="'. esc_attr( $b['url'] ) .'" ';
-					$output .= 'name="'. $id .'['. $brand .'][url]" placeholder="'. esc_attr( $brands[ $brand ][1] ) .'" ';
-					$output .= '/>';
 					$output .= '<span class="dashicons dashicons-dismiss zsp-delete-single-brand"></span>';
 					$output .= '<span class="dashicons dashicons-menu zsp-move-single-brand"></span>';
 					$output .= '</div>';

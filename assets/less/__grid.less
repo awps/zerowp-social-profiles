@@ -1,0 +1,47 @@
+.zsp-width-generator (@n, @i) when (@i = 3), (@i = 4), (@i = 6), (@i = 8), (@i = 9), (@i = 12) {
+	@nc: 12/@i;
+	& > .col-@{i} {
+		.flex-basis( @i * 100% / @n );
+		max-width: @i * 100% / @n;
+	}
+}
+.zsp-create-columns-width(@n: 12, @i: 1) when (@i =< @n) {
+	.zsp-width-generator( @n, @i );
+	.zsp-create-columns-width(@n, (@i + 1));
+}
+
+@zsp-space: 7px;
+
+.zsp-grid {
+	&,
+	> .zsp-grid{
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		margin-left: -(@zsp-space);
+		margin-right: -(@zsp-space);
+		.box-sizing( border-box );
+		.flex-wrap( wrap );
+	}
+	&,
+	> .zsp-grid,
+	> .flex {
+		.display( flex );
+	}
+	> * {
+		.flex-basis( 100% );
+		max-width: 100%;
+	}
+	> *,
+	> .zsp-grid {
+		list-style: none;
+		margin: 0;
+		float: none;
+		padding-left: @zsp-space;
+		padding-right: @zsp-space;
+		.box-sizing( border-box );
+	}
+
+	.zsp-create-columns-width();
+
+}

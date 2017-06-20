@@ -81,7 +81,7 @@ abstract class AbstractWidget extends \WP_Widget{
 
 				/* Label
 				-------------*/
-				if( !empty( $settings[ 'label' ] ) ){
+				if( !empty( $settings[ 'label' ] ) && 'checkbox' !== $type ){
 					$output .= '<div class="label">'. $settings[ 'label' ] .'</div>';
 				}
 
@@ -97,7 +97,7 @@ abstract class AbstractWidget extends \WP_Widget{
 							value="'. esc_attr( $value ) .'" />';
 
 						break;
-					
+
 					case 'number':
 						
 						$output .= '<input'. $attr_id .' 
@@ -107,6 +107,23 @@ abstract class AbstractWidget extends \WP_Widget{
 							value="'. esc_attr( $value ) .'" />';
 
 						break;
+					
+					case 'checkbox':
+						
+						$output .= '<input'. $attr_id .' type="hidden" name="'. $name .'" value="" />';
+
+						$output .= '<input'. $attr_id .' 
+							type="checkbox" 
+							class="'. $class .'" 
+							name="'. $name .'" 
+							value="1" />';
+
+						if( !empty( $settings[ 'label' ] ) ){
+							$output .= '<span class="checkbox-label">'. $settings[ 'label' ] .'</span>';
+						}
+
+						break;
+					
 					
 					case 'select':
 
@@ -148,11 +165,11 @@ abstract class AbstractWidget extends \WP_Widget{
 									
 									$output .= '<div class="brand-label">'. esc_attr( $brands[ $brand ][1] ) .'</div>';
 									
-									$output .= '<input type="text" class="widefat" value="'. esc_attr( $b['label'] ) .'" ';
-									$output .= 'name="'. $name .'['. $brand .'][label]" placeholder="'. __( 'Follow us on', 'social-profiles' ) .'" ';
-									$output .= '/>';
 									$output .= '<input type="text" class="widefat" value="'. esc_attr( $b['url'] ) .'" ';
 									$output .= 'name="'. $name .'['. $brand .'][url]" placeholder="'. esc_attr( $brands[ $brand ][1] ) .'" ';
+									$output .= '/>';
+									$output .= '<input type="text" class="widefat" value="'. esc_attr( $b['label'] ) .'" ';
+									$output .= 'name="'. $name .'['. $brand .'][label]" placeholder="'. __( 'Follow us on', 'social-profiles' ) .'" ';
 									$output .= '/>';
 									$output .= '<span class="dashicons dashicons-dismiss zsp-delete-single-brand"></span>';
 									$output .= '<span class="dashicons dashicons-menu zsp-move-single-brand"></span>';

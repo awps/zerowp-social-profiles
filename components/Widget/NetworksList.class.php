@@ -1,5 +1,7 @@
 <?php 
-namespace SocialProfiles\Widget;
+namespace SocialProfiles\Component\Widget;
+
+use SocialProfiles\Widget\AbstractWidget;
 
 class NetworksList extends AbstractWidget{
 	
@@ -7,7 +9,7 @@ class NetworksList extends AbstractWidget{
 		return array(
 			'id_base'   => 'zsp_social_profiles_list_widget',
 			'name'      => __( 'Social Profiles List', 'social-profiles' ),
-			'classname' => 'zsp-social-profiles-list',
+			'classname' => 'zsp-networks-list-widget',
 		);
 	}
 
@@ -74,17 +76,7 @@ class NetworksList extends AbstractWidget{
 		echo $this->openWidget( $args );
 		echo $this->getTitle( $args, $instance );
 
-		/* Get saved data
-		----------------------*/
-		$icon_size   = !empty( $instance[ 'icon_size' ] ) ? ' '. sanitize_html_class( $instance[ 'icon_size' ] ) : '';
-		$icon_shape  = !empty( $instance[ 'icon_shape' ] ) ? ' '. sanitize_html_class( $instance[ 'icon_shape' ] ) : '';
-		$icon_radius = !empty( $instance[ 'icon_radius' ] ) ? ' '. sanitize_html_class( $instance[ 'icon_radius' ] ) : '';
-		$list_style  = !empty( $instance[ 'list_style' ] ) ? $instance[ 'list_style' ] : '';
 		$networks    = !empty( $instance[ 'networks' ] ) && is_array($instance[ 'networks' ]) ? $instance[ 'networks' ] : false;
-
-		/* Prepare icon class
-		--------------------------*/
-		$class = $icon_size . $icon_shape . $icon_radius;
 
 		/* Short-circuit the widget output. Useful to pass a user function in `zsp_widget` action hook.
 		----------------------------------------------------------------------------------------------------*/
@@ -92,32 +84,9 @@ class NetworksList extends AbstractWidget{
 
 		/* If a custom widget output is not available, display default
 		-------------------------------------------------------------------*/
-		$brands = ZSP()->brands();
-
 		if( false === $custom_widget_output && !empty($networks) ){
 
-			if( 'icons_list' === $list_style ){
-				foreach ( $networks as $net_name => $net) {
-					echo '<a href="'. esc_attr( $net['url'] ) .'"> 
-						<span class="sp-icon-'. $net_name . $class .'" 
-							title="'. esc_attr( $brands[$net_name][1] ) .'">
-							<i></i>
-						</span>
-					</a>';
-				}
-			}
-			
-			else{
-				foreach ( $networks as $net_name => $net) {
-					echo '<a href="'. esc_attr( $net['url'] ) .'" class="network'. $class .'">
-						<span  class="sp-icon-'. $net_name . $class .'"><i></i></span>
-						<div class="details">
-							<div class="on">'. ( !empty($net['label']) ? $net['label'] : __( 'Follow us on', 'social-profiles' ) ) .'</div>
-							<div class="title">'. esc_attr( $brands[$net_name][1] ) .'</div>
-						</div>
-					</a>';
-				}
-			}
+			echo ZSP()->parseNetworksList( $networks, $instance );
 
 		}
 

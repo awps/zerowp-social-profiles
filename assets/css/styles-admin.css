@@ -52,6 +52,16 @@
   flex-basis: 50%;
   max-width: 50%;
 }
+.zsp-grid > .col-8 {
+  -webkit-flex-basis: 66.66666666666667%;
+  flex-basis: 66.66666666666667%;
+  max-width: 66.66666667%;
+}
+.zsp-grid > .col-9 {
+  -webkit-flex-basis: 75%;
+  flex-basis: 75%;
+  max-width: 75%;
+}
 .zsp-grid > .col-12 {
   -webkit-flex-basis: 100%;
   flex-basis: 100%;
@@ -145,5 +155,3 @@
 .zsp-single-brand .brand-label {
   font-weight: 700;
 }
-
-/*# sourceMappingURL=admin.css.map */

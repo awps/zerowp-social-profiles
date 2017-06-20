@@ -1,2 +1,2 @@
 <?php 
-	// We may need some functions? :D
+// We may need some functions...

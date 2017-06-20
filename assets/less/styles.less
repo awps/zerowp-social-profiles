@@ -1,13 +1,14 @@
 @import "__lesshat.less";
+@import "__grid.less";
 
 @font-face {
 	font-family: 'zspicon';
-	src:  url('fonts/zsp.eot?6mfloc');
-	src:  url('fonts/zsp.eot?6mfloc#iefix') format('embedded-opentype'),
-		url('fonts/zsp.woff2?6mfloc') format('woff2'),
-		url('fonts/zsp.ttf?6mfloc') format('truetype'),
-		url('fonts/zsp.woff?6mfloc') format('woff'),
-		url('fonts/zsp.svg?6mfloc#zsp') format('svg');
+	src:  url('../fonts/zsp.eot?6mfloc');
+	src:  url('../fonts/zsp.eot?6mfloc#iefix') format('embedded-opentype'),
+		url('../fonts/zsp.woff2?6mfloc') format('woff2'),
+		url('../fonts/zsp.ttf?6mfloc') format('truetype'),
+		url('../fonts/zsp.woff?6mfloc') format('woff'),
+		url('../fonts/zsp.svg?6mfloc#zsp') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -164,6 +165,9 @@
 // Widget
 // ----------------------------------------------------------------------------
 .zsp-social-profiles-list{
+	> a{
+		display: inline-block;
+	}
 	.network{
 		display: block;
 		position: relative;
@@ -211,6 +215,56 @@
 			&.rotated{
 				min-height: 120px;
 				padding-left: 120px;
+			}
+		}
+	}
+}
+
+.zsp-about-user-in{
+	text-align: center;
+	&.inline{
+		text-align: left;
+	}
+	.photo{
+		display: block;
+		text-align: center;
+		img{
+			margin: 10px auto;
+			display: inline-block;
+		}
+		&.circle{
+			img{
+				border-radius: 50%;
+			}
+		}
+		&.square{
+			img{
+				border-radius: 0;
+			}
+		}
+		&.soft{
+			img{
+				border-radius: 5px;
+			}
+		}
+
+	}
+	.username{
+		font-size: 22px;
+	}
+
+	.author-info{
+		font-size: 14px;
+		margin-bottom: 10px;
+		a{
+			opacity: .85;
+		}
+		> span{
+			display: inline-block;
+			+ span{
+				margin-left: 10px;
+				padding-left: 10px;
+				border-left: 1px solid rgba(0, 0, 0, 0.1);
 			}
 		}
 	}

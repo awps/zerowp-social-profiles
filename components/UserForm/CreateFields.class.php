@@ -1,9 +1,9 @@
 <?php
-namespace SocialProfiles\Create;
+namespace SocialProfiles\Component\UserForm;
 
 use SocialProfiles\User\Form;
 
-class UserFields{
+class CreateFields{
 	
 	public function __construct(){
 
