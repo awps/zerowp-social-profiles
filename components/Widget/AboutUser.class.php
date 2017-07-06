@@ -8,7 +8,7 @@ class AboutUser extends AbstractWidget{
 	public function settings(){
 		return array(
 			'id_base'   => 'zsp_about_user',
-			'name'      => __( 'About User', 'smk_theme' ),
+			'name'      => __( 'About User', 'social-profiles' ),
 			'classname' => 'zsp-about-user',
 		);
 	}
@@ -84,7 +84,7 @@ class AboutUser extends AbstractWidget{
 				if( !empty( $show_reg_date ) ){
 					$author_info .= '<span>';
 						$format = get_option( 'date_format', 'F j, Y' );
-						$author_info .= sprintf( __( 'Member since %s', 'smk_theme' ), date_i18n($format, strtotime($user->user_registered)) );
+						$author_info .= sprintf( __( 'Member since %s', 'social-profiles' ), date_i18n($format, strtotime($user->user_registered)) );
 					$author_info .= '</span>';
 				}
 
