@@ -24,7 +24,7 @@ class FieldBrandsRepeater extends AbstractFieldType{
 					if( empty( $settings[ 'no_label' ] ) ){
 						$label = !empty( $b['label'] ) ? esc_attr( $b['label'] ) : '';
 						$output .= '<input type="text" class="widefat" value="'. $label .'" ';
-						$output .= 'name="'. $id .'['. $brand .'][label]" placeholder="'. __( 'Follow us on', 'social-profiles' ) .'" ';
+						$output .= 'name="'. $id .'['. $brand .'][label]" placeholder="'. __( 'Follow us on', 'zerowp-social-profiles' ) .'" ';
 						$output .= '/>';
 					}
 					

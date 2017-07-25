@@ -20,7 +20,7 @@ class ParseNetworks{
 
 				// Set label...
 				if( empty($brand['label']) ){
-					$this->net[ $brand_id ]['label'] = __( 'Follow us on', 'social-profiles' );
+					$this->net[ $brand_id ]['label'] = __( 'Follow us on', 'zerowp-social-profiles' );
 				}
 
 				$url = !empty($brand['url']) ? $brand['url'] : false;
@@ -80,7 +80,7 @@ class ParseNetworks{
 		$output = '';
 
 		if( !empty($networks) ){
-			$output .= '<div class="zsp-social-profiles-list">';
+			$output .= '<div class="zsp-zerowp-social-profiles-list">';
 				if( 'icons_list' === $list_style ){
 					foreach ( $networks as $net_name => $net) {
 						$output .= '<a href="'. esc_attr( $net['url'] ) .'"> 

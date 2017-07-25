@@ -39,7 +39,7 @@ final class ZSP_Plugin{
 	 * @return void 
 	 */
 	public function __clone() {
-		_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'social-profiles' ), '1.0' );
+		_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'zerowp-social-profiles' ), '1.0' );
 	}
 
 	//------------------------------------//--------------------------------------//
@@ -50,7 +50,7 @@ final class ZSP_Plugin{
 	 * @return void 
 	 */
 	public function __wakeup() {
-		_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'social-profiles' ), '1.0' );
+		_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'zerowp-social-profiles' ), '1.0' );
 	}
 
 	//------------------------------------//--------------------------------------//
@@ -148,7 +148,7 @@ final class ZSP_Plugin{
 	 */
 	public function loadTextDomain(){
 		load_plugin_textdomain( 
-			'social-profiles', 
+			'zerowp-social-profiles', 
 			false, 
 			$this->config( 'lang_path' ) 
 		);

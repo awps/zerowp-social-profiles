@@ -8,7 +8,7 @@ class NetworksList extends AbstractWidget{
 	public function settings(){
 		return array(
 			'id_base'   => 'zsp_social_profiles_list_widget',
-			'name'      => __( 'Social Profiles List', 'social-profiles' ),
+			'name'      => __( 'ZeroWP Social Profiles List', 'zerowp-social-profiles' ),
 			'classname' => 'zsp-networks-list-widget',
 		);
 	}
@@ -16,24 +16,24 @@ class NetworksList extends AbstractWidget{
 	public function options( $instance ){
 		
 		$this->addField( 'title', 'text', $instance, array(
-			'label'       => __( 'Title', 'social-profiles' ),
+			'label'       => __( 'Title', 'zerowp-social-profiles' ),
 		));
 
 		echo '<div class="zsp-widget-tabs-header">';
-			echo '<span data-id="settings" class="wp-ui-text-highlight">'. __( 'Settings', 'social-profiles' ) .'</span>';
-			echo '<span data-id="styles">'. __( 'Styles', 'social-profiles' ) .'</span>';
+			echo '<span data-id="settings" class="wp-ui-text-highlight">'. __( 'Settings', 'zerowp-social-profiles' ) .'</span>';
+			echo '<span data-id="styles">'. __( 'Styles', 'zerowp-social-profiles' ) .'</span>';
 		echo '</div>';
 
 		echo '<div class="zsp-widget-tabs-body">';
 			echo '<div class="zsp-widget-tab zsp-grid settings active">';
 				$this->addField( 'networks', 'networks', $instance, array(
-					'options_label'   => __( 'Select network', 'social-profiles' ),
+					'options_label'   => __( 'Select network', 'zerowp-social-profiles' ),
 				));
 			echo '</div>';
 
 			echo '<div class="zsp-widget-tab zsp-grid styles">';
 				$this->addField( 'icon_size', 'select', $instance, array(
-					'label'   => __( 'Icon size', 'social-profiles' ),
+					'label'   => __( 'Icon size', 'zerowp-social-profiles' ),
 					'options' => ZSP()->config( 'icon_size' ),
 					'default' => 'large',
 					'class' => 'widefat',
@@ -41,14 +41,14 @@ class NetworksList extends AbstractWidget{
 				));
 
 				$this->addField( 'icon_shape', 'select', $instance, array(
-					'label'   => __( 'Shape', 'social-profiles' ),
+					'label'   => __( 'Shape', 'zerowp-social-profiles' ),
 					'options' => ZSP()->config( 'icon_shape' ),
 					'class' => 'widefat',
 					'grid' => 6
 				));
 
 				$this->addField( 'icon_radius', 'select', $instance, array(
-					'label'   => __( 'Radius', 'social-profiles' ),
+					'label'   => __( 'Radius', 'zerowp-social-profiles' ),
 					'options' => ZSP()->config( 'icon_radius' ),
 					'default' => 'rounded',
 					'class' => 'widefat',
@@ -56,10 +56,10 @@ class NetworksList extends AbstractWidget{
 				));
 
 				$this->addField( 'list_style', 'select', $instance, array(
-					'label'   => __( 'List style', 'social-profiles' ),
+					'label'   => __( 'List style', 'zerowp-social-profiles' ),
 					'options' => apply_filters( 'zsp_widget_networks_list_style', array(
-						'networks_list' => __( 'Networks list', 'social-profiles' ),
-						'icons_list'    => __( 'Icons list', 'social-profiles' ),
+						'networks_list' => __( 'Networks list', 'zerowp-social-profiles' ),
+						'icons_list'    => __( 'Icons list', 'zerowp-social-profiles' ),
 					)),
 					'default' => 'rounded',
 					'class' => 'widefat',

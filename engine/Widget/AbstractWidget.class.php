@@ -169,7 +169,7 @@ abstract class AbstractWidget extends \WP_Widget{
 									$output .= 'name="'. $name .'['. $brand .'][url]" placeholder="'. esc_attr( $brands[ $brand ][1] ) .'" ';
 									$output .= '/>';
 									$output .= '<input type="text" class="widefat" value="'. esc_attr( $b['label'] ) .'" ';
-									$output .= 'name="'. $name .'['. $brand .'][label]" placeholder="'. __( 'Follow us on', 'social-profiles' ) .'" ';
+									$output .= 'name="'. $name .'['. $brand .'][label]" placeholder="'. __( 'Follow us on', 'zerowp-social-profiles' ) .'" ';
 									$output .= '/>';
 									$output .= '<span class="dashicons dashicons-dismiss zsp-delete-single-brand"></span>';
 									$output .= '<span class="dashicons dashicons-menu zsp-move-single-brand"></span>';

@@ -8,7 +8,7 @@ class AboutUser extends AbstractWidget{
 	public function settings(){
 		return array(
 			'id_base'   => 'zsp_about_user',
-			'name'      => __( 'About User', 'social-profiles' ),
+			'name'      => __( 'About User', 'zerowp-social-profiles' ),
 			'classname' => 'zsp-about-user',
 		);
 	}
@@ -84,7 +84,7 @@ class AboutUser extends AbstractWidget{
 				if( !empty( $show_reg_date ) ){
 					$author_info .= '<span>';
 						$format = get_option( 'date_format', 'F j, Y' );
-						$author_info .= sprintf( __( 'Member since %s', 'social-profiles' ), date_i18n($format, strtotime($user->user_registered)) );
+						$author_info .= sprintf( __( 'Member since %s', 'zerowp-social-profiles' ), date_i18n($format, strtotime($user->user_registered)) );
 					$author_info .= '</span>';
 				}
 
@@ -115,72 +115,72 @@ class AboutUser extends AbstractWidget{
 		$user = get_userdata( get_current_user_id() );
 
 		$this->addField( 'title', 'text', $instance, array(
-			'label' => __( 'Title', 'social-profiles' ),
-			'description' => __( 'Recommended to leave empty.', 'social-profiles' ),
+			'label' => __( 'Title', 'zerowp-social-profiles' ),
+			'description' => __( 'Recommended to leave empty.', 'zerowp-social-profiles' ),
 		));
 
 		$this->addField( 'username', 'text', $instance, array(
-			'label' => __( 'Username', 'social-profiles' ),
+			'label' => __( 'Username', 'zerowp-social-profiles' ),
 			'default' => $user->user_login,
-			'description' => __( 'Enter the username to get info for.', 'social-profiles' ),
+			'description' => __( 'Enter the username to get info for.', 'zerowp-social-profiles' ),
 		));
 
 		$this->addField( 'show_name', 'select', $instance, array(
-			'label' => __( 'Show name', 'social-profiles' ),
+			'label' => __( 'Show name', 'zerowp-social-profiles' ),
 			'default' => 'display_name',
 			'options' => array(
-				'display_name' => __( 'Display name', 'social-profiles' ),
-				'username' => __( 'username', 'social-profiles' ),
-				'@username' => __( '@username', 'social-profiles' ),
-				'none' => __( 'None', 'social-profiles' ),
+				'display_name' => __( 'Display name', 'zerowp-social-profiles' ),
+				'username' => __( 'username', 'zerowp-social-profiles' ),
+				'@username' => __( '@username', 'zerowp-social-profiles' ),
+				'none' => __( 'None', 'zerowp-social-profiles' ),
 			),
 		));
 
 		$this->addField( 'show_link', 'select', $instance, array(
-			'label' => __( 'Show link', 'social-profiles' ),
+			'label' => __( 'Show link', 'zerowp-social-profiles' ),
 			'default' => '0',
 			'options' => array(
-				'1' => __( 'Yes', 'social-profiles' ),
-				'0' => __( 'No', 'social-profiles' ),
+				'1' => __( 'Yes', 'zerowp-social-profiles' ),
+				'0' => __( 'No', 'zerowp-social-profiles' ),
 			),
 		));
 		$this->addField( 'show_reg_date', 'select', $instance, array(
-			'label' => __( 'Show registration date', 'social-profiles' ),
+			'label' => __( 'Show registration date', 'zerowp-social-profiles' ),
 			'default' => '0',
 			'options' => array(
-				'1' => __( 'Yes', 'social-profiles' ),
-				'0' => __( 'No', 'social-profiles' ),
+				'1' => __( 'Yes', 'zerowp-social-profiles' ),
+				'0' => __( 'No', 'zerowp-social-profiles' ),
 			),
 		));
 
 		$this->addField( 'limit', 'number', $instance, array(
-			'label' => __( 'User bio limit', 'social-profiles' ),
+			'label' => __( 'User bio limit', 'zerowp-social-profiles' ),
 			'default' => '',
-			'description' => __( 'Leave empty or set to 0 if you want to show the full user bio.', 'social-profiles' ),
+			'description' => __( 'Leave empty or set to 0 if you want to show the full user bio.', 'zerowp-social-profiles' ),
 		));
 
 		$this->addField( 'avatar_size', 'number', $instance, array(
-			'label' => __( 'Avatar size', 'social-profiles' ),
+			'label' => __( 'Avatar size', 'zerowp-social-profiles' ),
 			'default' => '150',
-			'description' => __( 'Leave empty or set to 0 if you want to hide the avatar.', 'social-profiles' ),
+			'description' => __( 'Leave empty or set to 0 if you want to hide the avatar.', 'zerowp-social-profiles' ),
 		));
 
 		$this->addField( 'avatar_style', 'select', $instance, array(
-			'label' => __( 'Avatar style', 'social-profiles' ),
+			'label' => __( 'Avatar style', 'zerowp-social-profiles' ),
 			'default' => 'circle',
 			'options' => array(
-				'circle' => __( 'Circle', 'social-profiles' ),
-				'square' => __( 'Square', 'social-profiles' ),
-				'soft' => __( 'Soft', 'social-profiles' ),
+				'circle' => __( 'Circle', 'zerowp-social-profiles' ),
+				'square' => __( 'Square', 'zerowp-social-profiles' ),
+				'soft' => __( 'Soft', 'zerowp-social-profiles' ),
 			),
 		));
 
 		$this->addField( 'box_style', 'select', $instance, array(
-			'label' => __( 'Box style', 'social-profiles' ),
+			'label' => __( 'Box style', 'zerowp-social-profiles' ),
 			'default' => 'large',
 			'options' => array(
-				'inline' => __( 'Inline', 'social-profiles' ),
-				'large' => __( 'Large', 'social-profiles' ),
+				'inline' => __( 'Inline', 'zerowp-social-profiles' ),
+				'large' => __( 'Large', 'zerowp-social-profiles' ),
 			),
 		));
 

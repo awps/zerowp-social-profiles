@@ -1,13 +1,13 @@
 <?php
 /* 
- * Plugin Name: Social Profiles
+ * Plugin Name: ZeroWP Social Profiles
  * Plugin URI:  http://zerowp.com/social-profiles
  * Description: Create links to profiles from 170+ social networks
  * Author:      ZeroWP Team
  * Author URI:  http://zerowp.com/
  * License:     GPL-2.0+
  * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain: social-profiles
+ * Text Domain: zerowp-social-profiles
  * Domain Path: /languages
  *
  * Version:     1.0
@@ -45,8 +45,8 @@ function zsp_config( $key = false ){
 		'action_name'      => 'init',
 
 		// Plugin branding
-		'plugin_name'      => __( 'Social Profiles', 'social-profiles' ),
-		'id'               => 'social-profiles',
+		'plugin_name'      => __( 'ZeroWP Social Profiles', 'zerowp-social-profiles' ),
+		'id'               => 'zerowp-social-profiles',
 		'namespace'        => 'SocialProfiles',
 		'uppercase_prefix' => 'ZSP',
 		'lowercase_prefix' => 'zsp',
@@ -67,27 +67,27 @@ function zsp_config( $key = false ){
 
 		// Icon sizes
 		'icon_size' => apply_filters( 'zsp_icon_size', array(
-			''            => __( 'Default', 'social-profiles' ),
-			'large'       => __( 'Large', 'social-profiles' ),
-			'extra-large' => __( 'Extra large', 'social-profiles' ),
+			''            => __( 'Default', 'zerowp-social-profiles' ),
+			'large'       => __( 'Large', 'zerowp-social-profiles' ),
+			'extra-large' => __( 'Extra large', 'zerowp-social-profiles' ),
 		)),
 
 		// Icon shapes
 		'icon_shape' => apply_filters( 'zsp_icon_shape', array(
-			''            => __( 'Default', 'social-profiles' ),
-			'circle'      => __( 'Circle', 'social-profiles' ),
-			'burst'       => __( 'Burst', 'social-profiles' ),
-			'burst-alt'   => __( 'Burst alt', 'social-profiles' ),
-			'rotated'     => __( 'Rotated', 'social-profiles' ),
-			'transparent' => __( 'Transparent', 'social-profiles' ),
-			'minimal'     => __( 'Minimal', 'social-profiles' ),
+			''            => __( 'Default', 'zerowp-social-profiles' ),
+			'circle'      => __( 'Circle', 'zerowp-social-profiles' ),
+			'burst'       => __( 'Burst', 'zerowp-social-profiles' ),
+			'burst-alt'   => __( 'Burst alt', 'zerowp-social-profiles' ),
+			'rotated'     => __( 'Rotated', 'zerowp-social-profiles' ),
+			'transparent' => __( 'Transparent', 'zerowp-social-profiles' ),
+			'minimal'     => __( 'Minimal', 'zerowp-social-profiles' ),
 		)),
 
 		// Icon radius
 		'icon_radius' => apply_filters( 'zsp_icon_radius', array(
-			''          => __( 'Default', 'social-profiles' ),
-			'soft'      => __( 'Soft', 'social-profiles' ),
-			'square'    => __( 'Square', 'social-profiles' ),
+			''          => __( 'Default', 'zerowp-social-profiles' ),
+			'soft'      => __( 'Soft', 'zerowp-social-profiles' ),
+			'square'    => __( 'Square', 'zerowp-social-profiles' ),
 		)),
 
 	));

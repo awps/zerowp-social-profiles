@@ -11,8 +11,8 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 Create links to profiles from 170+ social networks
 
 == Installation ==
-1. Upload the `social-profiles` folder to the `/wp-content/plugins/` directory
-2. Activate the 'Social Profiles' plugin through the 'Plugins' menu in WordPress
+1. Upload the `zerowp-social-profiles` folder to the `/wp-content/plugins/` directory
+2. Activate the 'ZeroWP Social Profiles' plugin through the 'Plugins' menu in WordPress
 
 == Changelog ==
 = 1.0 = 
