@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
-"Project-Id-Version: ZeroWP Social Profiles\n"
+"Project-Id-Version: Social Profiles by ZeroWP\n"
 "POT-Creation-Date: 2017-07-23 14:56+0300\n"
 "PO-Revision-Date: 2017-07-23 14:56+0300\n"
 "Last-Translator: \n"
@@ -143,7 +143,7 @@ msgid "Large"
 msgstr ""
 
 #: components/Widget/NetworksList.class.php:11
-msgid "ZeroWP Social Profiles List"
+msgid "Social Profiles by ZeroWP List"
 msgstr ""
 
 #: components/Widget/NetworksList.class.php:23
@@ -243,7 +243,7 @@ msgstr ""
 
 #. Plugin Name of the plugin/theme
 #: zerowp-social-profiles.php:48
-msgid "ZeroWP Social Profiles"
+msgid "Social Profiles by ZeroWP"
 msgstr ""
 
 #: zerowp-social-profiles.php:70 zerowp-social-profiles.php:77

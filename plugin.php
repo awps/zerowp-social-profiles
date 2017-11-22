@@ -1,4 +1,4 @@
-<?php 
+<?php
 final class ZSP_Plugin{
 
 	/**
@@ -14,15 +14,15 @@ final class ZSP_Plugin{
 	 * @var string
 	 */
 	protected static $_instance = null;
-	
+
 	//------------------------------------//--------------------------------------//
-	
+
 	/**
 	 * Plugin instance
 	 *
 	 * Makes sure that just one instance is allowed.
 	 *
-	 * @return object 
+	 * @return object
 	 */
 	public static function instance() {
 		if ( is_null( self::$_instance ) ) {
@@ -32,52 +32,52 @@ final class ZSP_Plugin{
 	}
 
 	//------------------------------------//--------------------------------------//
-	
+
 	/**
 	 * Cloning is forbidden.
 	 *
-	 * @return void 
+	 * @return void
 	 */
 	public function __clone() {
 		_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'zerowp-social-profiles' ), '1.0' );
 	}
 
 	//------------------------------------//--------------------------------------//
-	
+
 	/**
 	 * Unserializing instances of this class is forbidden.
 	 *
-	 * @return void 
+	 * @return void
 	 */
 	public function __wakeup() {
 		_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'zerowp-social-profiles' ), '1.0' );
 	}
 
 	//------------------------------------//--------------------------------------//
-	
+
 	/**
 	 * Plugin configuration
 	 *
 	 * @param string $key Optional. Get the config value by key.
-	 * @return mixed 
+	 * @return mixed
 	 */
 	public function config( $key = false ){
 		return zsp_config( $key );
 	}
 
 	//------------------------------------//--------------------------------------//
-	
+
 	/**
 	 * Build it!
 	 */
 	public function __construct() {
 		$this->version = ZSP_VERSION;
-		
+
 		/* Include core
 		--------------------*/
 		include_once $this->rootPath() . "autoloader.php";
 		include_once $this->rootPath() . "functions.php";
-		
+
 		/* Activation and deactivation hooks
 		-----------------------------------------*/
 		register_activation_hook( ZSP_PLUGIN_FILE, array( $this, 'onActivation' ) );
@@ -103,13 +103,13 @@ final class ZSP_Plugin{
 	}
 
 	//------------------------------------//--------------------------------------//
-	
+
 	/**
 	 * Init the plugin.
-	 * 
+	 *
 	 * Attached to `init` action hook. Init functions and classes here.
 	 *
-	 * @return void 
+	 * @return void
 	 */
 	public function init() {
 		do_action( 'zsp:before_init' );
@@ -129,37 +129,37 @@ final class ZSP_Plugin{
 	}
 
 	//------------------------------------//--------------------------------------//
-	
+
 	/**
 	 * Init the widgets of this plugin
 	 *
-	 * @return void 
+	 * @return void
 	 */
 	public function initWidgets() {
 		do_action( 'zsp:widgets_init' );
 	}
 
 	//------------------------------------//--------------------------------------//
-	
+
 	/**
 	 * Localize
 	 *
-	 * @return void 
+	 * @return void
 	 */
 	public function loadTextDomain(){
-		load_plugin_textdomain( 
-			'zerowp-social-profiles', 
-			false, 
-			$this->config( 'lang_path' ) 
+		load_plugin_textdomain(
+			'zerowp-social-profiles',
+			false,
+			$this->config( 'lang_path' )
 		);
 	}
 
 	//------------------------------------//--------------------------------------//
-	
+
 	/**
 	 * Load components
 	 *
-	 * @return void 
+	 * @return void
 	 */
 	public function loadComponents(){
 		$components = glob( ZSP_PATH .'components/*', GLOB_ONLYDIR );
@@ -169,14 +169,14 @@ final class ZSP_Plugin{
 	}
 
 	//------------------------------------//--------------------------------------//
-	
+
 	/**
 	 * Front-end scripts & styles
 	 *
-	 * @return void 
+	 * @return void
 	 */
 	public function frontendScriptsAndStyles(){
-		
+
 		$id = $this->config( 'id' );
 
 		$this->addStyles(array(
@@ -197,17 +197,21 @@ final class ZSP_Plugin{
 	}
 
 	//------------------------------------//--------------------------------------//
-	
+
 	/**
 	 * Back-end scripts & styles
 	 *
-	 * @return void 
+	 * @return void
 	 */
-	public function backendScriptsAndStyles(){
-		
+	public function backendScriptsAndStyles() {
+
 		$id     = $this->config( 'id' );
 		$screen = get_current_screen();
-		$enqueue_callback = ( is_admin() && ( 'customize' == $screen->base ||'widgets' == $screen->base || 'profile' == $screen->base ) );
+		$enqueue_callback = ( is_admin() && (
+			'customize' === $screen->base ||
+			'widgets' === $screen->base ||
+			'profile' === $screen->base
+		) );
 
 		$this->addStyles(array(
 			$id . '-styles-admin' => array(
@@ -223,9 +227,12 @@ final class ZSP_Plugin{
 				'deps'    => array( 'jquery', 'jquery-ui-core', 'jquery-ui-sortable' ),
 				'enqueue' => true,
 				'enqueue_callback' => $enqueue_callback,
+				'zsp_local' => array(
+					'delete_handle' => '<span class="dashicons dashicons-dismiss zsp-delete-single-brand"></span>',
+					'move_handle' => '<span class="dashicons dashicons-menu zsp-move-single-brand"></span>',
+				),
 			),
 		));
-
 
 	}
 
@@ -238,7 +245,7 @@ final class ZSP_Plugin{
 		if( !empty( $styles ) ){
 
 			foreach ($styles as $handle => $s) {
-				
+
 				/* If just calling an already registered style
 				------------------------------------------------------*/
 				if( is_numeric( $handle ) && !empty($s) ){
@@ -255,11 +262,11 @@ final class ZSP_Plugin{
 					'enqueue' => true,
 					'enqueue_callback' => null,
 				));
-				
+
 				/* Register style
 				-------------------------*/
 				wp_register_style( $handle, $s['src'], $s['deps'], $s['ver'], $s['media'] );
-				
+
 				/* Enqueue style
 				------------------------*/
 				$this->_enqueue( 'style', $s, $handle );
@@ -277,7 +284,7 @@ final class ZSP_Plugin{
 		if( !empty( $scripts ) ){
 
 			foreach ($scripts as $handle => $s) {
-				
+
 				/* If just calling an already registered script
 				----------------------------------------------------*/
 				if( is_numeric( $handle ) && !empty($s) ){
@@ -295,16 +302,16 @@ final class ZSP_Plugin{
 					'enqueue'   => true,
 					'enqueue_callback' => null,
 				));
-				
+
 				wp_register_script( $handle, $s['src'], $s['deps'], $s['ver'], $s['in_footer'] );
-				
+
 				/* Enqueue
 				---------------*/
 				$this->_enqueue( 'script', $s, $handle );
 
-				/* Localize 
+				/* Localize
 				-----------------*/
-				// Remove known keys 
+				// Remove known keys
 				unset( $s['src'], $s['deps'], $s['ver'], $s['in_footer'], $s['enqueue'], $s['enqueue_callback'] );
 
 				// Probably we have localization strings
@@ -328,7 +335,7 @@ final class ZSP_Plugin{
 	}
 
 	//------------------------------------//--------------------------------------//
-	
+
 	/**
 	 * Enqueue
 	 *
@@ -337,16 +344,16 @@ final class ZSP_Plugin{
 	 * @param string $type 'script' or 'style'
 	 * @param array $s Parameters
 	 * @param string $handle Asset handle
-	 * @return void 
+	 * @return void
 	 */
 	protected function _enqueue( $type, $s, $handle ){
 		if( $s['enqueue'] ){
-			if( ! isset( $s['enqueue_callback'] ) || ( 
-				! empty( $s['enqueue_callback'] ) 
+			if( ! isset( $s['enqueue_callback'] ) || (
+				! empty( $s['enqueue_callback'] )
 				&& ( is_callable( $s['enqueue_callback'] ) && call_user_func( $s['enqueue_callback'] )
 				|| ( true === $s['enqueue_callback'] ) )
 			) ){
-				
+
 				if( 'style' == $type ){
 					wp_enqueue_style( $handle );
 				}
@@ -408,14 +415,14 @@ final class ZSP_Plugin{
 
 	/**
 	 * Get assets url.
-	 * 
+	 *
 	 * @param string $file Optionally specify a file name
 	 *
 	 * @return string
 	 */
 	public function assetsURL( $file = false ){
 		$path = ZSP_URL . 'assets/';
-		
+
 		if( $file ){
 			$path = $path . $file;
 		}
@@ -430,7 +437,7 @@ final class ZSP_Plugin{
 	 *
 	 * Get all brand icons with their color and name
 	 *
-	 * @return array 
+	 * @return array
 	 */
 	public function brands( $key = false ){
 		$brands = array(
@@ -609,12 +616,12 @@ final class ZSP_Plugin{
 			'gamejolt'        => array( '#191919', ),
 			'tunein'          => array( '#36b4a7', 'TuneIn' ),
 		);
-	
+
 		foreach ($brands as $brand => $b) {
 			$brand_label = !empty($b[1]) ? $b[1] : ucfirst($brand);
 			$brands[$brand][1] = $brand_label;
 		}
-		
+
 		if( !empty($key) ){
 			if( isset( $brands[$key] ) ){
 				return $brands[$key];

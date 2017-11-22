@@ -1,20 +1,20 @@
-<?php 
+<?php
 namespace SocialProfiles\Component\Widget;
 
 use SocialProfiles\Widget\AbstractWidget;
 
 class NetworksList extends AbstractWidget{
-	
+
 	public function settings(){
 		return array(
 			'id_base'   => 'zsp_social_profiles_list_widget',
-			'name'      => __( 'ZeroWP Social Profiles List', 'zerowp-social-profiles' ),
+			'name'      => __( 'Social Profiles by ZeroWP List', 'zerowp-social-profiles' ),
 			'classname' => 'zsp-networks-list-widget',
 		);
 	}
 
 	public function options( $instance ){
-		
+
 		$this->addField( 'title', 'text', $instance, array(
 			'label'       => __( 'Title', 'zerowp-social-profiles' ),
 		));
@@ -64,7 +64,7 @@ class NetworksList extends AbstractWidget{
 					'default' => 'rounded',
 					'class' => 'widefat',
 					'grid' => 6
-				));	
+				));
 			echo '</div>';
 		echo '</div>';
 

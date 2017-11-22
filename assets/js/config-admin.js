@@ -24,13 +24,13 @@
 
 		// Build plugin
 		this.build = function() {
-			
+
 			var self = false;
 
 			var _base = {
 
 				doIt: function(){
-								
+
 					$('body').on(  'click', '.zsp-widget-tabs-header span', function(){
 						var _this = $(this);
 						var _tabs_header = _this.parent();
@@ -53,29 +53,28 @@
 						var _placeholder = _this.prev();
 
 						if( _val !== '' &&  _this.prev().children().filter('.' + _val ).length < 1 ){
-							
+
 							var _html = '';
-							_html += '<div class="zsp-single-brand '+ _val +'" title="'+ _label +'">';
+							_html += '<div class="zsp-single-brand '+ _val +'">';
 							_html += '<div class="brand-label">'+ _label +'</div>';
-							
+
 							_html += '<input type="text" class="widefat" value="" ';
-							_html += 'name="'+ _name +'['+ _val +'][url]" placeholder="'+ _label +'" ';
-							_html += '/>';
-							
+							_html += 'name="'+ _name +'['+ _val +'][url]" />';
+
 							if( ! _placeholder.hasClass('no-label') ){
 								_html += '<input type="text" class="widefat" value="" ';
 								_html += 'name="'+ _name +'['+ _val +'][label]" placeholder="Follow us on" ';
 								_html += '/>';
 							}
-							
-							_html += '<span class="dashicons dashicons-dismiss zsp-delete-single-brand"></span>';
-							_html += '<span class="dashicons dashicons-menu zsp-move-single-brand"></span>';
+
+							_html += zsp_local.delete_handle;
+							_html += zsp_local.move_handle;
 							_html += '</div>';
 
 							_placeholder.append( _html );
 						}
 					});
-					
+
 					$('body').on( 'mouseover', '.zsp-brands-selected-list', function(){
 						$(this).sortable({
 							axis: 'y',
@@ -85,7 +84,7 @@
 							}
 						});
 					});
-					
+
 
 					$('body').on( 'click', '.zsp-delete-single-brand', function(){
 						var _block = $(this).parent();

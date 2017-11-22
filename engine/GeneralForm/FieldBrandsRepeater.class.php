@@ -1,11 +1,11 @@
-<?php 
+<?php
 namespace SocialProfiles\GeneralForm;
 
 class FieldBrandsRepeater extends AbstractFieldType{
 
 	public function show( $id, $settings, $saved_value ){
 		$output = '';
-		
+
 		$brands = ZSP()->brands();
 
 		$output .= '<input class="zsp-placeholder-field" type="hidden" value="" name="'. $id .'" />';
@@ -13,23 +13,23 @@ class FieldBrandsRepeater extends AbstractFieldType{
 		$output .= '<div class="zsp-brands-selected-list '. (!empty( $settings[ 'no_label' ] ) ? 'no-label' : '') .'">';
 			if( !empty($saved_value) && is_array($saved_value) ){
 				foreach ($saved_value as $brand => $b) {
-					$output .= '<div class="zsp-single-brand '. $brand .'" title="'. esc_attr( $brands[ $brand ][1] ) .'">';
-					
+					$output .= '<div class="zsp-single-brand '. $brand .'">';
+
 					$output .= '<div class="brand-label">'. esc_attr( $brands[ $brand ][1] ) .'</div>';
-					
+
 					$output .= '<input type="text" class="widefat" value="'. esc_attr( $b['url'] ) .'" ';
-					$output .= 'name="'. $id .'['. $brand .'][url]" placeholder="'. esc_attr( $brands[ $brand ][1] ) .'" ';
+					$output .= 'name="'. $id .'['. $brand .'][url]" ';
 					$output .= '/>';
-					
+
 					if( empty( $settings[ 'no_label' ] ) ){
 						$label = !empty( $b['label'] ) ? esc_attr( $b['label'] ) : '';
 						$output .= '<input type="text" class="widefat" value="'. $label .'" ';
 						$output .= 'name="'. $id .'['. $brand .'][label]" placeholder="'. __( 'Follow us on', 'zerowp-social-profiles' ) .'" ';
 						$output .= '/>';
 					}
-					
-					$output .= '<span class="dashicons dashicons-dismiss zsp-delete-single-brand"></span>';
-					$output .= '<span class="dashicons dashicons-menu zsp-move-single-brand"></span>';
+
+					$output .= apply_filters( 'zsp_delete_handle', '<span class="dashicons dashicons-dismiss zsp-delete-single-brand"></span>' );
+					$output .= apply_filters( 'zsp_move_handle', '<span class="dashicons dashicons-menu zsp-move-single-brand"></span>' );
 					$output .= '</div>';
 				}
 			}
@@ -52,10 +52,15 @@ class FieldBrandsRepeater extends AbstractFieldType{
 	public function sanitize( $data, $settings ){
 		if( is_array( $data ) ){
 			foreach ($data as $brand_id => $brand) {
-				$url = trim( $brand['url'] );
+				$url = strip_tags( $brand['url'] );
+
 				if( empty($url) ){
 					unset( $data[ $brand_id ] );
 				}
+				else{
+					$data[ $brand_id ]['url'] = $url;
+				}
+
 			}
 		}
 

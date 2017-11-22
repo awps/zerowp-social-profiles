@@ -1,6 +1,6 @@
 <?php
-/* 
- * Plugin Name: ZeroWP Social Profiles
+/*
+ * Plugin Name: Social Profiles by ZeroWP
  * Plugin URI:  http://zerowp.com/social-profiles
  * Description: Create links to profiles from 170+ social networks
  * Author:      ZeroWP Team
@@ -10,8 +10,8 @@
  * Text Domain: zerowp-social-profiles
  * Domain Path: /languages
  *
- * Version:     1.0
- * 
+ * Version:     1.1.2
+ *
  */
 
 /* No direct access allowed!
@@ -22,11 +22,11 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 ----------------------------*/
 function zsp_config( $key = false ){
 	$settings = apply_filters( 'zsp:config_args', array(
-		
+
 		// Plugin data
-		'version'          => '1.0',
+		'version'          => '1.1.2',
 		'min_php_version'  => '5.3',
-		
+
 		// The list of required plugins. 'slug' => array 'name and uri'
 		'required_plugins' => array(
 			// 'test' => array(
@@ -45,12 +45,12 @@ function zsp_config( $key = false ){
 		'action_name'      => 'init',
 
 		// Plugin branding
-		'plugin_name'      => __( 'ZeroWP Social Profiles', 'zerowp-social-profiles' ),
+		'plugin_name'      => __( 'Social Profiles by ZeroWP', 'zerowp-social-profiles' ),
 		'id'               => 'zerowp-social-profiles',
 		'namespace'        => 'SocialProfiles',
 		'uppercase_prefix' => 'ZSP',
 		'lowercase_prefix' => 'zsp',
-		
+
 		// Access to plugin directory
 		'file'             => __FILE__,
 		'lang_path'        => plugin_dir_path( __FILE__ ) . 'languages',
@@ -116,7 +116,7 @@ function zsp_config( $key = false ){
 /* Define the current version of this plugin.
 -----------------------------------------------------------------------------*/
 define( 'ZSP_VERSION',         zsp_config( 'version' ) );
- 
+
 /* Plugin constants
 ------------------------*/
 define( 'ZSP_PLUGIN_FILE',     zsp_config( 'file' ) );
@@ -135,7 +135,7 @@ define( 'ZSP_MIN_PHP_VERSION', zsp_config( 'min_php_version' ) );
 final class ZSP_Plugin_Init{
 
 	public function __construct(){
-		
+
 		$required_plugins = zsp_config( 'required_plugins' );
 		$missed_plugins   = $this->missedPlugins();
 
@@ -160,11 +160,11 @@ final class ZSP_Plugin_Init{
 		/* We require some plugins and all of them are activated
 		-------------------------------------------------------------*/
 		elseif( !empty( $required_plugins ) && empty( $missed_plugins ) ){
-			
-			add_action( 
-				'plugins_loaded', 
-				array( $this, 'getSource' ), 
-				zsp_config( 'priority' ) 
+
+			add_action(
+				'plugins_loaded',
+				array( $this, 'getSource' ),
+				zsp_config( 'priority' )
 			);
 
 		}
@@ -180,30 +180,30 @@ final class ZSP_Plugin_Init{
 	}
 
 	//------------------------------------//--------------------------------------//
-	
+
 	/**
 	 * Get plugin source
 	 *
-	 * @return void 
+	 * @return void
 	 */
 	public function getSource(){
 		require_once ZSP_PATH . 'plugin.php';
-		
+
 		$components = glob( ZSP_PATH .'components/*', GLOB_ONLYDIR );
 		foreach ($components as $component_path) {
 			require_once trailingslashit( $component_path ) .'component.php';
 		}
-	
+
 	}
 
 	//------------------------------------//--------------------------------------//
-	
+
 	/**
 	 * Missed plugins
 	 *
 	 * Get an array of missed plugins
 	 *
-	 * @return array 
+	 * @return array
 	 */
 	public function missedPlugins(){
 		$required = zsp_config( 'required_plugins' );
@@ -214,13 +214,13 @@ final class ZSP_Plugin_Init{
 	}
 
 	//------------------------------------//--------------------------------------//
-	
+
 	/**
 	 * Active plugins
 	 *
 	 * Get an array of active plugins
 	 *
-	 * @return array 
+	 * @return array
 	 */
 	public function activePlugins(){
 		$active = get_option('active_plugins');
@@ -234,11 +234,11 @@ final class ZSP_Plugin_Init{
 	}
 
 	//------------------------------------//--------------------------------------//
-	
+
 	/**
 	 * Filter plugins callback
 	 *
-	 * @return string 
+	 * @return string
 	 */
 	protected function _filterPlugins( $value ){
 		$plugin = explode( '/', $value );

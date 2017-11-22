@@ -1,29 +1,24 @@
 .zsp-grid,
 .zsp-grid > .zsp-grid {
   list-style: none;
-  margin: 0;
+  margin: 0 -7px;
   padding: 0;
-  margin-left: -7px;
-  margin-right: -7px;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
   -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
 }
 .zsp-grid,
 .zsp-grid > .zsp-grid,
 .zsp-grid > .flex {
-  display: -webkit-box;
-  display: -moz-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 .zsp-grid > * {
   -webkit-flex-basis: 100%;
-  flex-basis: 100%;
+      -ms-flex-preferred-size: 100%;
+          flex-basis: 100%;
   max-width: 100%;
 }
 .zsp-grid > *,
@@ -33,38 +28,42 @@
   float: none;
   padding-left: 7px;
   padding-right: 7px;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 .zsp-grid > .col-3 {
   -webkit-flex-basis: 25%;
-  flex-basis: 25%;
+      -ms-flex-preferred-size: 25%;
+          flex-basis: 25%;
   max-width: 25%;
 }
 .zsp-grid > .col-4 {
-  -webkit-flex-basis: 33.333333333333336%;
-  flex-basis: 33.333333333333336%;
+  -webkit-flex-basis: 33.33333333%;
+      -ms-flex-preferred-size: 33.33333333%;
+          flex-basis: 33.33333333%;
   max-width: 33.33333333%;
 }
 .zsp-grid > .col-6 {
   -webkit-flex-basis: 50%;
-  flex-basis: 50%;
+      -ms-flex-preferred-size: 50%;
+          flex-basis: 50%;
   max-width: 50%;
 }
 .zsp-grid > .col-8 {
-  -webkit-flex-basis: 66.66666666666667%;
-  flex-basis: 66.66666666666667%;
+  -webkit-flex-basis: 66.66666667%;
+      -ms-flex-preferred-size: 66.66666667%;
+          flex-basis: 66.66666667%;
   max-width: 66.66666667%;
 }
 .zsp-grid > .col-9 {
   -webkit-flex-basis: 75%;
-  flex-basis: 75%;
+      -ms-flex-preferred-size: 75%;
+          flex-basis: 75%;
   max-width: 75%;
 }
 .zsp-grid > .col-12 {
   -webkit-flex-basis: 100%;
-  flex-basis: 100%;
+      -ms-flex-preferred-size: 100%;
+          flex-basis: 100%;
   max-width: 100%;
 }
 .zsp-grid {
@@ -125,8 +124,6 @@
   display: none;
 }
 .zsp-grid.zsp-widget-tab.active {
-  display: -webkit-box;
-  display: -moz-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
