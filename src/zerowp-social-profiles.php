@@ -1,16 +1,16 @@
 <?php
 /*
- * Plugin Name: Social Profiles by ZeroWP
+ * Plugin Name: Social Profiles
  * Plugin URI:  http://zerowp.com/social-profiles
  * Description: Create links to profiles from 170+ social networks
- * Author:      ZeroWP Team
+ * Author:      Andrei Surdu
  * Author URI:  http://zerowp.com/
  * License:     GPL-2.0+
  * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain: zerowp-social-profiles
  * Domain Path: /languages
  *
- * Version:     1.1.2
+ * Version:     __STABLE_TAG__
  *
  */
 
@@ -24,7 +24,7 @@ function zsp_config( $key = false ){
 	$settings = apply_filters( 'zsp:config_args', array(
 
 		// Plugin data
-		'version'          => '1.1.2',
+		'version'          => '__STABLE_TAG__',
 		'min_php_version'  => '5.3',
 
 		// The list of required plugins. 'slug' => array 'name and uri'
